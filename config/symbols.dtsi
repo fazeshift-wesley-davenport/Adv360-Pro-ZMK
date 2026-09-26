@@ -1,0 +1,66 @@
+/*
+ * TypeScript symbol macros and the Hyper chord helper.
+ * Included inside the `behaviors` node of adv360.keymap.
+ */
+
+/* Hyper = Ctrl+Opt+Shift+Cmd. Raycast hotkeys bind Hyper+<key> to apps and commands. */
+#define HYPER(k) LS(LC(LA(LG(k))))
+
+/* Autopairs: type both brackets, then step the cursor back inside. */
+mpar: ts_macro_parens {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp LPAR &kp RPAR &kp LEFT>;
+};
+mbkt: ts_macro_square_brackets {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp LBKT &kp RBKT &kp LEFT>;
+};
+mbrc: ts_macro_curly_braces {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp LBRC &kp RBRC &kp LEFT>;
+};
+mtmpl: ts_macro_template_slot {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp DLLR &kp LBRC &kp RBRC &kp LEFT>;
+};
+
+/* Operators */
+fat_arrow: ts_macro_fat_arrow {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp EQUAL &kp GT>;
+};
+triple_eq: ts_macro_triple_equal {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp EQUAL &kp EQUAL &kp EQUAL>;
+};
+not_eq: ts_macro_not_equal {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp EXCL &kp EQUAL &kp EQUAL>;
+};
+opt_chain: ts_macro_optional_chain {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp QMARK &kp DOT>;
+};
+nullish: ts_macro_nullish {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp QMARK &kp QMARK>;
+};
+and_and: ts_macro_and_and {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp AMPS &kp AMPS>;
+};
+or_or: ts_macro_or_or {
+  compatible = "zmk,behavior-macro";
+  #binding-cells = <0>;
+  bindings = <&macro_tap &kp PIPE &kp PIPE>;
+};
