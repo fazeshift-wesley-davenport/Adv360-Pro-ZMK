@@ -98,11 +98,11 @@
     nav {
       display-name = "Nav";
       bindings = <
-        ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___        ___           ___           ___
-        ___ &kp LG(GRAVE) WIN_TOP    WIN_RESTORE ___        &kp LC(UP)       XXX                                                          XXX &kp LG(LEFT)     &kp LA(LEFT) &kp PG_UP  &kp LA(RIGHT) &kp LG(RIGHT) &kp HOME
-        ___ WIN_PREV_DISPLAY WIN_LEFT WIN_MAX    WIN_RIGHT  WIN_NEXT_DISPLAY XXX              ___ ___ ___ ___                             XXX &kp LEFT         &kp DOWN     &kp UP     &kp RIGHT     ___           &kp END
-        ___ ___           WIN_BOTTOM WIN_CENTER  ___        ___                                   ___ ___                                     &kp LC(LS(TAB))  &kp LC(TAB)  &kp PG_DN  &kp LG(LBKT)  &kp LG(RBKT)  ___
-        ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___        ___           ___           ___
+        ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
+        ___ &kp LG(GRAVE) WIN_TOP    WIN_RESTORE ___        &kp LC(UP)       XXX                                                          XXX &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
+        ___ WIN_PREV_DISPLAY WIN_LEFT WIN_MAX    WIN_RIGHT  WIN_NEXT_DISPLAY XXX              ___ ___ ___ ___                             XXX &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
+        ___ ___           WIN_BOTTOM WIN_CENTER  ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
+        ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
       >;
     };
 

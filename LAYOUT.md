@@ -37,15 +37,18 @@ Both Cmd keys are hold-taps. Hold = Cmd. Tap left Cmd = Cmd+Space (Raycast). Tap
 
 ## Nav (hold Esc)
 
-Right hand:
+Right hand, one direction per column. Home keys `N E I O` are the arrows.
 
-- `M N E I` (HJKL caps) = ← ↓ ↑ →
-- `J L U Y ;` (YUIOP caps) = line start, word left, PgUp, word right, line end
-- `\` = Home, `'` = End
-- `K H` (NM caps) = previous tab, next tab (Ctrl+Shift+Tab, Ctrl+Tab)
-- `,` = PgDn, `.` = back (Cmd+[), `/` = forward (Cmd+])
+| | `N` col | `E` col | `I` col | `O` col |
+|---|---|---|---|---|
+| row above | word left (Opt+←) | doc end (Cmd+↓) | doc top (Cmd+↑) | word right (Opt+→) |
+| home | ← | ↓ | ↑ | → |
+| row below | line start (Cmd+←) | PgDn | PgUp | line end (Cmd+→) |
 
-Thumb modifiers stay active, so Shift+arrow selects and Cmd+K is document top.
+Inner column `M`: previous tab, next tab, next window of the app (Cmd+`), top to bottom.
+Outer column: `\` = back (Cmd+[), `'` = forward (Cmd+]).
+
+Thumb modifiers stay active, so Shift+arrow selects.
 
 Left hand, Rectangle:
 
