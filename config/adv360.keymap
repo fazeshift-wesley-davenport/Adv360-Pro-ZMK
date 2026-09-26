@@ -7,12 +7,13 @@
 #include <dt-bindings/zmk/pointing.h>
 
 /* Layer indices. Kinesis layer LED colors follow the index. */
-#define BASE 0
-#define NAV  1
-#define SYM  2
-#define APP  3
-#define FN   4
-#define MOD  5
+#define BASE   0
+#define QWERTY 1
+#define NAV    2
+#define SYM    3
+#define APP    4
+#define FN     5
+#define MOD    6
 
 #define ___ &trans
 #define XXX &none
@@ -45,6 +46,20 @@
 
       /* Thumb layer keys: tap = key, hold = layer. Balanced so that
        * pressing and releasing another key during the hold picks the layer. */
+      /* Cmd thumb keys: hold = Cmd, tap = a Cmd shortcut. hold-while-undecided keeps
+       * Cmd visible to macOS at once, so Cmd+click and Cmd+drag work. Linger keeps
+       * one continuous Cmd press across the tap. */
+      mtc: mod_tap_cmd {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          tapping-term-ms = <200>;
+          quick-tap-ms = <175>;
+          flavor = "hold-preferred";
+          hold-while-undecided;
+          hold-while-undecided-linger;
+          bindings = <&kp>, <&kp>;
+      };
+
       lth: layer_tap_hold {
           compatible = "zmk,behavior-hold-tap";
           #binding-cells = <2>;
@@ -61,11 +76,22 @@
     default_layer {
       display-name = "Base";
       bindings = <
-        &kp EQUAL &kp N1    &kp N2     &kp N3   &kp N4    &kp N5 &tog SYM                                                                 &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W      &kp E    &kp R     &kp T  XXX                                                                      XXX     &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S      &kp D    &kp F     &kp G  XXX            &kp LALT &kp LGUI      &kp RGUI      &kp RALT              XXX     &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X      &kp C    &kp V     &kp B                          &kp LCTRL     &kp RCTRL                                   &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo FN    &kp GRAVE &caps_word &kp LEFT &kp RIGHT               &kp BSPC &lth APP DEL &lth NAV ESC &lth SYM TAB &kp ENTER &kp SPACE               &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
+        &kp EQUAL &kp N1    &kp N2     &kp N3   &kp N4    &kp N5 &tog SYM                                                                                  &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
+        &kp TAB   &kp Q     &kp W      &kp F    &kp P     &kp B  XXX                                                                                       XXX     &kp J  &kp L  &kp U     &kp Y    &kp SEMI &kp BSLH
+        &kp ESC   &kp A     &kp R      &kp S    &kp T     &kp G  XXX            &kp LALT &mtc LGUI LG(SPACE)      &mtc RGUI LG(K)      &kp RALT              XXX     &kp M  &kp N  &kp E     &kp I    &kp O    &kp SQT
+        &kp LSHFT &kp Z     &kp X      &kp C    &kp D     &kp V                          &kp LCTRL                &kp RCTRL                                         &kp K  &kp H  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &mo FN    &kp GRAVE &caps_word &kp LEFT &kp RIGHT               &kp BSPC &lth APP DEL &lth NAV ESC &lth SYM TAB &kp ENTER &kp SPACE                                &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
+      >;
+    };
+
+    qwerty {
+      display-name = "Qwerty";
+      bindings = <
+        ___ ___   ___   ___   ___   ___   ___                                                   ___ ___   ___   ___       ___     ___      ___
+        ___ &kp Q &kp W &kp E &kp R &kp T XXX                                                   XXX &kp Y &kp U &kp I     &kp O   &kp P    ___
+        ___ &kp A &kp S &kp D &kp F &kp G XXX           ___ ___ ___ ___                         XXX &kp H &kp J &kp K     &kp L   &kp SEMI ___
+        ___ &kp Z &kp X &kp C &kp V &kp B                     ___ ___                               &kp N &kp M &kp COMMA &kp DOT &kp FSLH ___
+        ___ ___   ___   ___   ___               ___ ___ ___ ___ ___ ___                                   ___   ___       ___     ___      ___
       >;
     };
 
@@ -94,11 +120,11 @@
     app {
       display-name = "App";
       bindings = <
-        ___ &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3)   &kp HYPER(N4)    &kp HYPER(N5) ___                                                                 ___ &kp HYPER(N6) &kp HYPER(N7) &kp HYPER(N8)    &kp HYPER(N9)   &kp HYPER(N0)   ___
-        ___ &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(E)    &kp HYPER(R)     &kp HYPER(T)  XXX                                                                 XXX &kp HYPER(Y)  &kp HYPER(U)  &kp HYPER(I)     &kp HYPER(O)    &kp HYPER(P)    ___
-        ___ &kp HYPER(A)  &kp HYPER(S)  &kp HYPER(D)    &kp HYPER(F)     &kp HYPER(G)  XXX            ___ ___ ___ ___                                      XXX &kp HYPER(H)  &kp HYPER(J)  &kp HYPER(K)     &kp HYPER(L)    &kp HYPER(SEMI) ___
-        ___ &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)    &kp HYPER(V)     &kp HYPER(B)                      ___ ___                                             &kp HYPER(N)  &kp HYPER(M)  &kp HYPER(COMMA) &kp HYPER(DOT)  ___             ___
-        ___ ___           ___           &kp HYPER(LEFT) &kp HYPER(RIGHT)                ___ ___ ___ ___ &kp HYPER(RET) &kp HYPER(SPACE)                        &kp HYPER(UP) &kp HYPER(DOWN) ___            ___             ___
+        ___ &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3)   &kp HYPER(N4)    &kp HYPER(N5) ___                                                                 ___ &kp HYPER(N6) &kp HYPER(N7)   &kp HYPER(N8)    &kp HYPER(N9)   &kp HYPER(N0)   ___
+        ___ &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(F)    &kp HYPER(P)     &kp HYPER(B)  XXX                                                                 XXX &kp HYPER(J)  &kp HYPER(L)    &kp HYPER(U)     &kp HYPER(Y)    &kp HYPER(SEMI) ___
+        ___ &kp HYPER(A)  &kp HYPER(R)  &kp HYPER(S)    &kp HYPER(T)     &kp HYPER(G)  XXX            ___ ___ ___ ___                                      XXX &kp HYPER(M)  &kp HYPER(N)    &kp HYPER(E)     &kp HYPER(I)    &kp HYPER(O)    ___
+        ___ &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)    &kp HYPER(D)     &kp HYPER(V)                      ___ ___                                             &kp HYPER(K)  &kp HYPER(H)    &kp HYPER(COMMA) &kp HYPER(DOT)  ___             ___
+        ___ ___           ___           &kp HYPER(LEFT) &kp HYPER(RIGHT)                ___ ___ ___ ___ &kp HYPER(RET) &kp HYPER(SPACE)                        &kp HYPER(UP) &kp HYPER(DOWN) ___              ___             ___
       >;
     };
 
@@ -117,7 +143,7 @@
       display-name = "Mod";
       bindings = <
         &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                                                     &trans                 &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none        &none        &bootloader                                                               &bootloader            &none        &none        &none        &none &none &none
+        &none &tog QWERTY  &none        &none        &none        &none        &bootloader                                                               &bootloader            &none        &none        &none        &none &none &none
         &studio_unlock &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &stp STP_BAT &none        &none        &none        &none &none &none
         &none &none        &none        &none        &macro_ver   &none                                      &none &none                                                        &none        &none        &none        &none &none &none
         &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
