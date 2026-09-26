@@ -80,7 +80,7 @@ Every letter, digit, arrow, Enter, and Space sends Hyper (Ctrl+Opt+Shift+Cmd) pl
 | Hyper+D | Conductor |
 | Hyper+Z | Zed |
 | Hyper+U | Cursor |
-| Hyper+T | iTerm |
+| Hyper+T | Terminal |
 | Hyper+F | Finder |
 | Hyper+Space | Raycast root search (optional) |
 
