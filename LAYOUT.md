@@ -129,6 +129,8 @@ Free: `W R I J Y` and the digits. The list lives in `tools/apps.json`; move a ke
 
 F-keys on the top row in the stock Kinesis order: F1 on `=`, F2 to F6 on `1` to `5`, F7 to F11 on `6` to `0`, F12 on `-`. `W F` (WE caps) brightness. `L U Y` (UIO caps) previous, play/pause, next. `N E I` (JKL caps) mute, volume down, volume up. Old Caps key = Caps Lock. The base Caps key is Caps Word: type one ALL_CAPS identifier, it turns off at the first space.
 
+After any change, walk `CHECKLIST.md`: keymap, keyboard, wallpaper, trainer, Raycast.
+
 ## Build and flash
 
 1. Push to GitHub. Actions builds `firmware-no-clique` (use this) and `firmware-clique`.
