@@ -36,6 +36,10 @@ def lab(tok):
         if k in apps['bound']: return ('✦'+k, apps['bound'][k], 'bound')
         if k in apps['suggested']: return ('✦'+k, apps['suggested'][k], 'sugg')
         return ('✦'+k,'','free')
+    m=re.match(r'&hm[lr] (\w+) (\w+)$',tok)
+    if m:
+        mods={'LGUI':'⌘','RGUI':'⌘','LALT':'⌥','RALT':'⌥','LCTRL':'⌃','RCTRL':'⌃','LSHFT':'⇧','RSHFT':'⇧'}
+        return (SPECIAL.get(m.group(2), m.group(2)), 'hold '+mods[m.group(1)], 'hold')
     m=re.match(r'&kp (F\d+|N\d)$',tok)
     if m: return m.group(1).replace('N','')
     m=re.match(r'&kp (\w)$',tok)
@@ -44,7 +48,7 @@ def lab(tok):
 def norm(v):
     if isinstance(v,tuple): return {'l':v[0],'s':v[1],'c':v[2]}
     return {'l':v,'s':'','c':''}
-TOK=r'&(?:lth \w+ \w+|mtc \w+ \w+\(\w+\)|kp HYPER\(\w+\)|kp [A-Z_0-9]+(?:\([A-Z_0-9()]*\))?|mo \w+|tog \w+|bt \w+ \d|bt \w+|stp \w+|bl \w+|rgb_ug \w+|\w+)'
+TOK=r'&(?:hml \w+ \w+|hmr \w+ \w+|lth \w+ \w+|mtc \w+ \w+\(\w+\)|kp HYPER\(\w+\)|kp [A-Z_0-9]+(?:\([A-Z_0-9()]*\))?|mo \w+|tog \w+|bt \w+ \d|bt \w+|stp \w+|bl \w+|rgb_ug \w+|\w+)'
 layers=[]
 for name,disp,body in re.findall(r'(\w+) \{\s*display-name = "([^"]+)";\s*bindings = <(.*?)>;',src,re.S):
     if name in ('extra1','extra2','extra3'): continue

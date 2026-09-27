@@ -35,6 +35,22 @@ Cmd sits on the inner top key of each side. Opt on the outer top key. Ctrl on th
 
 Both Cmd keys are hold-taps. Hold = Cmd. Tap left Cmd = Cmd+Space (Raycast). Tap right Cmd = Cmd+K (Slack quick switcher, Linear command menu, Cursor inline edit). Terminal.app treats Cmd+K as clear scrollback, so a missed hold there wipes the screen. Change the tap to something else if that bites. Hold Cmd and press Space still gives Cmd+Space. Cmd+click and Cmd+drag work because the behavior sets `hold-while-undecided`.
 
+## Home-row mods
+
+Hold a home-row key and it becomes a modifier. Tap it and it types the letter.
+
+```
+ A   R   S   T          N   E   I   O
+ Cmd Opt Ctrl Shift     Shift Ctrl Opt Cmd
+```
+
+Rules that keep typing clean ("timeless" home-row mods):
+
+- A hold only counts when the next key is on the other hand or a thumb. Same-hand rolls like `st` or `ne` always type letters.
+- 280 ms tapping term, 175 ms quick-tap (tap then hold repeats the letter), 150 ms prior-idle guard.
+- Same-hand shortcuts still need the thumb modifiers: Cmd+C, Cmd+V, Cmd+Z, Cmd+A are all left-hand letters, so use the left thumb Cmd or the copy/paste keys beside B and G.
+- The Qwerty overlay has the same mods on A S D F and J K L ;.
+
 ## Inner-column keys (the ones capped 1, 2, 3, 4)
 
 Index-finger stretch keys beside B, G, J and M. Taps, not letters.
