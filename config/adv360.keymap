@@ -53,7 +53,7 @@
 
       /* Thumb layer keys: tap = key, hold = layer. Balanced so that
        * pressing and releasing another key during the hold picks the layer. */
-      /* Cmd thumb keys: hold = Cmd, tap = a Cmd shortcut. hold-while-undecided keeps
+      /* Cmd thumb keys (outer top on each side): hold = Cmd, tap = a Cmd shortcut. hold-while-undecided keeps
        * Cmd visible to macOS at once, so Cmd+click and Cmd+drag work. Linger keeps
        * one continuous Cmd press across the tap. */
       mtc: mod_tap_cmd {
@@ -112,7 +112,7 @@
       bindings = <
         &kp EQUAL &kp N1    &kp N2     &kp N3   &kp N4    &kp N5 &tog SYM                                                                                  &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
         &kp TAB   &kp Q     &kp W      &kp F    &kp P     &kp B  &kp LG(C)                                                                                      &kp LG(TAB) &kp J  &kp L  &kp U     &kp Y    &kp SEMI &kp BSLH
-        &kp ESC   &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G  &kp LG(V)           &kp LALT &mtc LGUI LG(SPACE)      &mtc RGUI LG(K)      &kp RALT              &kp LA(BSPC) &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O &kp SQT
+        &kp ESC   &hml LGUI A &hml LALT R &hml LCTRL S &hml LSHFT T &kp G  &kp LG(V)           &mtc LGUI LG(SPACE) &kp LALT      &kp RALT      &mtc RGUI LG(K)              &kp LA(BSPC) &kp M  &hmr RSHFT N &hmr RCTRL E &hmr RALT I &hmr RGUI O &kp SQT
         &kp LSHFT &kp Z     &kp X      &kp C    &kp D     &kp V                          &kp LCTRL                &kp RCTRL                                         &kp K  &kp H  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
         &mo FN    &kp GRAVE &caps_word &kp LEFT &kp RIGHT               &kp BSPC &lth APP DEL &lth NAV ESC &lth SYM TAB &kp ENTER &kp SPACE                                &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
       >;

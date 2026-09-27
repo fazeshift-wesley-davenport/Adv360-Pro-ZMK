@@ -74,7 +74,7 @@ def thumbs(keys,side):
         return f'<div class="thumb L"><div class="trow">{key(keys[35],"s")}{key(keys[36],"s")}</div><div class="tbody">{key(keys[65],"big")}{key(keys[66],"big")}<div class="tcol">{key(keys[52],"s")}{key(keys[67],"s")}</div></div></div>'
     return f'<div class="thumb R"><div class="trow">{key(keys[37],"s")}{key(keys[38],"s")}</div><div class="tbody"><div class="tcol">{key(keys[53],"s")}{key(keys[68],"s")}</div>{key(keys[69],"big")}{key(keys[70],"big")}</div></div>'
 notes={
- 'Base':'Colemak-DH. LED off. Thumbs mirrored: Opt outer, Cmd inner, Ctrl on the upper column key. Tap left Cmd for Raycast (Cmd+Space), tap right Cmd for the command palette (Cmd+K). Hold the lower column key for a layer, tap it for Esc or Tab. Hold Del for App; tap Del then hold it to auto-repeat.',
+ 'Base':'Colemak-DH. LED off. Thumbs mirrored: Cmd outer, Opt inner, Ctrl on the upper column key. Tap left Cmd for Raycast (Cmd+Space), tap right Cmd for the command palette (Cmd+K). Hold the lower column key for a layer, tap it for Esc or Tab. Hold Del for App; tap Del then hold it to auto-repeat.',
  'Qwerty':'Mod+Q toggles this over the base. LED white. It sits below every hold layer, so Mod, Nav, Sym, App and Fn still win while it is on. Resets to Colemak-DH on power cycle.',
  'Fn':'Hold either outer bottom pinky key. LED blue. F-keys on the top row, brightness on W/F, media on L/U/Y and N/E/I, Caps Lock on the old Caps key.',
  'Mod':'Hold the top inner key on the right half. LED green. Stock Kinesis layer: Bluetooth profiles on 1–5, Boot on the key below Kp (left half) or below Mod (right half), version on the V cap, Qwerty toggle on the Q cap.',

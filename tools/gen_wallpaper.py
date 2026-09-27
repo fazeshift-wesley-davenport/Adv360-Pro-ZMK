@@ -22,7 +22,7 @@ def board(name,trigger,notes,zoom,cls=''):
 <div class="chips">{chips}</div>
 <div class="board">{half(L_rows,k)}{thumbs(k,'L')}{thumbs(k,'R')}{half(R_rows,k)}</div></section>'''
 base=board('Base','Colemak-DH',[
- 'Thumbs mirrored: Opt outer · Cmd inner · Ctrl upper column · layer hold lower column',
+ 'Thumbs mirrored: Cmd outer · Opt inner · Ctrl upper column · layer hold lower column',
  'Tap left Cmd = ⌘Space (Raycast)','Tap right Cmd = ⌘K (palette)',
  'Tap Del, then hold it again to auto-repeat','Kp locks Sym','Mod+Q toggles Qwerty'],1.18,'hero')
 row1=board('Nav','hold Esc (left thumb column)',['Arrows on N E I O home keys · word jump above · line / page below','Inner column: tabs, next window · outer: back, forward','Left hand: Rectangle · Shift+arrow selects'],.74) \

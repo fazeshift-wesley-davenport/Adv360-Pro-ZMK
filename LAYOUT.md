@@ -26,12 +26,12 @@ Letters below refer to the Colemak-DH key, then the physical Qwerty cap in paren
 
 ```
  left                      right
-   Opt   Cmd           Cmd   Opt
+   Cmd   Opt           Opt   Cmd
  Bksp Del  Ctrl       Ctrl  Enter Space
            Esc/Nav    Tab/Sym
 ```
 
-Cmd sits on the inner top key of each side. Opt on the outer top key. Ctrl on the upper column key.
+Cmd sits on the outer top key of each side, the easier reach. Opt on the inner top key. Ctrl on the upper column key.
 
 Both Cmd keys are hold-taps. Hold = Cmd. Tap left Cmd = Cmd+Space (Raycast). Tap right Cmd = Cmd+K (Slack quick switcher, Linear command menu, Cursor inline edit). Terminal.app treats Cmd+K as clear scrollback, so a missed hold there wipes the screen. Change the tap to something else if that bites. Hold Cmd and press Space still gives Cmd+Space. Cmd+click and Cmd+drag work because the behavior sets `hold-while-undecided`.
 
