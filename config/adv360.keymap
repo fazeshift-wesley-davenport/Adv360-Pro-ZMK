@@ -79,8 +79,8 @@
       display-name = "Base";
       bindings = <
         &kp EQUAL &kp N1    &kp N2     &kp N3   &kp N4    &kp N5 &tog SYM                                                                                  &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W      &kp F    &kp P     &kp B  XXX                                                                                       XXX     &kp J  &kp L  &kp U     &kp Y    &kp SEMI &kp BSLH
-        &kp ESC   &kp A     &kp R      &kp S    &kp T     &kp G  XXX            &kp LALT &mtc LGUI LG(SPACE)      &mtc RGUI LG(K)      &kp RALT              XXX     &kp M  &kp N  &kp E     &kp I    &kp O    &kp SQT
+        &kp TAB   &kp Q     &kp W      &kp F    &kp P     &kp B  &kp LG(C)                                                                                      &kp LG(TAB) &kp J  &kp L  &kp U     &kp Y    &kp SEMI &kp BSLH
+        &kp ESC   &kp A     &kp R      &kp S    &kp T     &kp G  &kp LG(V)           &kp LALT &mtc LGUI LG(SPACE)      &mtc RGUI LG(K)      &kp RALT              &kp LA(BSPC) &kp M  &kp N  &kp E     &kp I    &kp O    &kp SQT
         &kp LSHFT &kp Z     &kp X      &kp C    &kp D     &kp V                          &kp LCTRL                &kp RCTRL                                         &kp K  &kp H  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
         &mo FN    &kp GRAVE &caps_word &kp LEFT &kp RIGHT               &kp BSPC &lth APP DEL &lth NAV ESC &lth SYM TAB &kp ENTER &kp SPACE                                &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
       >;
@@ -101,8 +101,8 @@
       display-name = "Fn";
       bindings = <
         &kp F1 &kp F2       &kp F3       &kp F4 &kp F5 &kp F6 ___                                                   ___ &kp F7     &kp F8       &kp F9       &kp F10 &kp F11 &kp F12
-        ___    &kp C_BRI_DN &kp C_BRI_UP ___    ___    ___    XXX                                                   XXX ___        &kp C_PREV   &kp C_PP     &kp C_NEXT ___  ___
-        ___    ___          ___          ___    ___    ___    XXX           ___ ___ ___ ___                         XXX ___        &kp C_MUTE   &kp C_VOL_DN &kp C_VOL_UP ___ ___
+        ___    &kp C_BRI_DN &kp C_BRI_UP ___    ___    ___    ___                                                   ___ ___        &kp C_PREV   &kp C_PP     &kp C_NEXT ___  ___
+        ___    ___          ___          ___    ___    ___    ___           ___ ___ ___ ___                         ___ ___        &kp C_MUTE   &kp C_VOL_DN &kp C_VOL_UP ___ ___
         ___    ___          ___          ___    ___    ___                        ___ ___                               ___        ___          ___          ___     ___     ___
         ___    ___          &kp CAPS     ___    ___                 ___ ___ ___ ___ ___ ___                                        ___          ___          ___     ___     ___
       >;
@@ -123,8 +123,8 @@
       display-name = "Sym";
       bindings = <
         ___       ___        ___        ___     ___        ___       ___                                                   ___ ___       ___    ___    ___    ___       ___
-        ___       &mpar      &mbkt      &mbrc   &mtmpl     &kp GRAVE XXX                                                   XXX &kp MINUS &kp N7 &kp N8 &kp N9 &kp PLUS  &kp ASTRK
-        &kp UNDER &fat_arrow &triple_eq &not_eq &opt_chain &nullish  XXX           ___ ___ ___ ___                         XXX &kp EQUAL &kp N4 &kp N5 &kp N6 &kp COLON &kp DQT
+        ___       &mpar      &mbkt      &mbrc   &mtmpl     &kp GRAVE ___                                                   ___ &kp MINUS &kp N7 &kp N8 &kp N9 &kp PLUS  &kp ASTRK
+        &kp UNDER &fat_arrow &triple_eq &not_eq &opt_chain &nullish  ___           ___ ___ ___ ___                         ___ &kp EQUAL &kp N4 &kp N5 &kp N6 &kp COLON &kp DQT
         ___       &and_and   &or_or     &kp LT  &kp GT     &kp TILDE                    ___ ___                                &kp FSLH  &kp N1 &kp N2 &kp N3 &kp PRCNT ___
         ___       ___        ___        ___     ___                       ___ ___ ___ ___ ___ ___                                     &kp N0 &kp DOT ___   ___       ___
       >;
@@ -134,8 +134,8 @@
       display-name = "Nav";
       bindings = <
         ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
-        ___ &kp LG(GRAVE) WIN_TOP    WIN_RESTORE ___        &kp LC(UP)       XXX                                                          XXX &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
-        ___ WIN_PREV_DISPLAY WIN_LEFT WIN_MAX    WIN_RIGHT  WIN_NEXT_DISPLAY XXX              ___ ___ ___ ___                             XXX &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
+        ___ &kp LG(GRAVE) WIN_TOP    WIN_RESTORE ___        &kp LC(UP)       ___                                                          ___ &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
+        ___ WIN_PREV_DISPLAY WIN_LEFT WIN_MAX    WIN_RIGHT  WIN_NEXT_DISPLAY ___              ___ ___ ___ ___                             ___ &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
         ___ ___           WIN_BOTTOM WIN_CENTER  ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
         ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
       >;
@@ -145,8 +145,8 @@
       display-name = "App";
       bindings = <
         ___ &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3)   &kp HYPER(N4)    &kp HYPER(N5) ___                                                                 ___ &kp HYPER(N6) &kp HYPER(N7)   &kp HYPER(N8)    &kp HYPER(N9)   &kp HYPER(N0)   ___
-        ___ &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(F)    &kp HYPER(P)     &kp HYPER(B)  XXX                                                                 XXX &kp HYPER(J)  &kp HYPER(L)    &kp HYPER(U)     &kp HYPER(Y)    &kp HYPER(SEMI) ___
-        ___ &kp HYPER(A)  &kp HYPER(R)  &kp HYPER(S)    &kp HYPER(T)     &kp HYPER(G)  XXX            ___ ___ ___ ___                                      XXX &kp HYPER(M)  &kp HYPER(N)    &kp HYPER(E)     &kp HYPER(I)    &kp HYPER(O)    ___
+        ___ &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(F)    &kp HYPER(P)     &kp HYPER(B)  ___                                                                 ___ &kp HYPER(J)  &kp HYPER(L)    &kp HYPER(U)     &kp HYPER(Y)    &kp HYPER(SEMI) ___
+        ___ &kp HYPER(A)  &kp HYPER(R)  &kp HYPER(S)    &kp HYPER(T)     &kp HYPER(G)  ___            ___ ___ ___ ___                                      ___ &kp HYPER(M)  &kp HYPER(N)    &kp HYPER(E)     &kp HYPER(I)    &kp HYPER(O)    ___
         ___ &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)    &kp HYPER(D)     &kp HYPER(V)                      ___ ___                                             &kp HYPER(K)  &kp HYPER(H)    &kp HYPER(COMMA) &kp HYPER(DOT)  ___             ___
         ___ ___           ___           &kp HYPER(LEFT) &kp HYPER(RIGHT)                ___ ___ ___ ___ &kp HYPER(RET) &kp HYPER(SPACE)                        &kp HYPER(UP) &kp HYPER(DOWN) ___              ___             ___
       >;

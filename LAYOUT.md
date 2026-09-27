@@ -35,6 +35,17 @@ Cmd sits on the inner top key of each side. Opt on the outer top key. Ctrl on th
 
 Both Cmd keys are hold-taps. Hold = Cmd. Tap left Cmd = Cmd+Space (Raycast). Tap right Cmd = Cmd+K (Slack quick switcher, Linear command menu, Cursor inline edit). Terminal.app treats Cmd+K as clear scrollback, so a missed hold there wipes the screen. Change the tap to something else if that bites. Hold Cmd and press Space still gives Cmd+Space. Cmd+click and Cmd+drag work because the behavior sets `hold-while-undecided`.
 
+## Inner-column keys (the ones capped 1, 2, 3, 4)
+
+Index-finger stretch keys beside B, G, J and M. Taps, not letters.
+
+- `1` (beside B) = copy, Cmd+C
+- `2` (beside G) = paste, Cmd+V
+- `3` (beside J) = previous app, a single Cmd+Tab
+- `4` (beside M) = delete word, Opt+Backspace
+
+Copy and paste sit on the left so they work while the right hand is on the mouse. Mod+1 and Mod+3 are still the bootloader keys, since that lives in the Mod layer.
+
 ## Nav (hold Esc)
 
 Right hand, one direction per column. Home keys `N E I O` are the arrows.
