@@ -7,13 +7,15 @@
 #include <dt-bindings/zmk/pointing.h>
 
 /* Layer indices. Kinesis layer LED colors follow the index. */
+/* Mod stays at index 3, where the Kinesis firmware and manual put it.
+ * Sym and Fn take the stock Kp and Fn slots, so LED colors match the manual. */
 #define BASE   0
-#define QWERTY 1
-#define NAV    2
-#define SYM    3
-#define APP    4
-#define FN     5
-#define MOD    6
+#define SYM    1
+#define FN     2
+#define MOD    3
+#define NAV    4
+#define APP    5
+#define QWERTY 6
 
 #define ___ &trans
 #define XXX &none
@@ -84,28 +86,6 @@
       >;
     };
 
-    qwerty {
-      display-name = "Qwerty";
-      bindings = <
-        ___ ___   ___   ___   ___   ___   ___                                                   ___ ___   ___   ___       ___     ___      ___
-        ___ &kp Q &kp W &kp E &kp R &kp T XXX                                                   XXX &kp Y &kp U &kp I     &kp O   &kp P    ___
-        ___ &kp A &kp S &kp D &kp F &kp G XXX           ___ ___ ___ ___                         XXX &kp H &kp J &kp K     &kp L   &kp SEMI ___
-        ___ &kp Z &kp X &kp C &kp V &kp B                     ___ ___                               &kp N &kp M &kp COMMA &kp DOT &kp FSLH ___
-        ___ ___   ___   ___   ___               ___ ___ ___ ___ ___ ___                                   ___   ___       ___     ___      ___
-      >;
-    };
-
-    nav {
-      display-name = "Nav";
-      bindings = <
-        ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
-        ___ &kp LG(GRAVE) WIN_TOP    WIN_RESTORE ___        &kp LC(UP)       XXX                                                          XXX &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
-        ___ WIN_PREV_DISPLAY WIN_LEFT WIN_MAX    WIN_RIGHT  WIN_NEXT_DISPLAY XXX              ___ ___ ___ ___                             XXX &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
-        ___ ___           WIN_BOTTOM WIN_CENTER  ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
-        ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
-      >;
-    };
-
     sym {
       display-name = "Sym";
       bindings = <
@@ -114,17 +94,6 @@
         &kp UNDER &fat_arrow &triple_eq &not_eq &opt_chain &nullish  XXX           ___ ___ ___ ___                         XXX &kp EQUAL &kp N4 &kp N5 &kp N6 &kp COLON &kp DQT
         ___       &and_and   &or_or     &kp LT  &kp GT     &kp TILDE                    ___ ___                                &kp FSLH  &kp N1 &kp N2 &kp N3 &kp PRCNT ___
         ___       ___        ___        ___     ___                       ___ ___ ___ ___ ___ &kp N0                                     &kp N0 &kp DOT ___   ___       ___
-      >;
-    };
-
-    app {
-      display-name = "App";
-      bindings = <
-        ___ &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3)   &kp HYPER(N4)    &kp HYPER(N5) ___                                                                 ___ &kp HYPER(N6) &kp HYPER(N7)   &kp HYPER(N8)    &kp HYPER(N9)   &kp HYPER(N0)   ___
-        ___ &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(F)    &kp HYPER(P)     &kp HYPER(B)  XXX                                                                 XXX &kp HYPER(J)  &kp HYPER(L)    &kp HYPER(U)     &kp HYPER(Y)    &kp HYPER(SEMI) ___
-        ___ &kp HYPER(A)  &kp HYPER(R)  &kp HYPER(S)    &kp HYPER(T)     &kp HYPER(G)  XXX            ___ ___ ___ ___                                      XXX &kp HYPER(M)  &kp HYPER(N)    &kp HYPER(E)     &kp HYPER(I)    &kp HYPER(O)    ___
-        ___ &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)    &kp HYPER(D)     &kp HYPER(V)                      ___ ___                                             &kp HYPER(K)  &kp HYPER(H)    &kp HYPER(COMMA) &kp HYPER(DOT)  ___             ___
-        ___ ___           ___           &kp HYPER(LEFT) &kp HYPER(RIGHT)                ___ ___ ___ ___ &kp HYPER(RET) &kp HYPER(SPACE)                        &kp HYPER(UP) &kp HYPER(DOWN) ___              ___             ___
       >;
     };
 
@@ -147,6 +116,39 @@
         &studio_unlock &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &stp STP_BAT &none        &none        &none        &none &none &none
         &none &none        &none        &none        &macro_ver   &none                                      &none &none                                                        &none        &none        &none        &none &none &none
         &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
+      >;
+    };
+
+    nav {
+      display-name = "Nav";
+      bindings = <
+        ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
+        ___ &kp LG(GRAVE) WIN_TOP    WIN_RESTORE ___        &kp LC(UP)       XXX                                                          XXX &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
+        ___ WIN_PREV_DISPLAY WIN_LEFT WIN_MAX    WIN_RIGHT  WIN_NEXT_DISPLAY XXX              ___ ___ ___ ___                             XXX &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
+        ___ ___           WIN_BOTTOM WIN_CENTER  ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
+        ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
+      >;
+    };
+
+    app {
+      display-name = "App";
+      bindings = <
+        ___ &kp HYPER(N1) &kp HYPER(N2) &kp HYPER(N3)   &kp HYPER(N4)    &kp HYPER(N5) ___                                                                 ___ &kp HYPER(N6) &kp HYPER(N7)   &kp HYPER(N8)    &kp HYPER(N9)   &kp HYPER(N0)   ___
+        ___ &kp HYPER(Q)  &kp HYPER(W)  &kp HYPER(F)    &kp HYPER(P)     &kp HYPER(B)  XXX                                                                 XXX &kp HYPER(J)  &kp HYPER(L)    &kp HYPER(U)     &kp HYPER(Y)    &kp HYPER(SEMI) ___
+        ___ &kp HYPER(A)  &kp HYPER(R)  &kp HYPER(S)    &kp HYPER(T)     &kp HYPER(G)  XXX            ___ ___ ___ ___                                      XXX &kp HYPER(M)  &kp HYPER(N)    &kp HYPER(E)     &kp HYPER(I)    &kp HYPER(O)    ___
+        ___ &kp HYPER(Z)  &kp HYPER(X)  &kp HYPER(C)    &kp HYPER(D)     &kp HYPER(V)                      ___ ___                                             &kp HYPER(K)  &kp HYPER(H)    &kp HYPER(COMMA) &kp HYPER(DOT)  ___             ___
+        ___ ___           ___           &kp HYPER(LEFT) &kp HYPER(RIGHT)                ___ ___ ___ ___ &kp HYPER(RET) &kp HYPER(SPACE)                        &kp HYPER(UP) &kp HYPER(DOWN) ___              ___             ___
+      >;
+    };
+
+    qwerty {
+      display-name = "Qwerty";
+      bindings = <
+        ___ ___   ___   ___   ___   ___   ___                                                   ___ ___   ___   ___       ___     ___      ___
+        ___ &kp Q &kp W &kp E &kp R &kp T XXX                                                   XXX &kp Y &kp U &kp I     &kp O   &kp P    ___
+        ___ &kp A &kp S &kp D &kp F &kp G XXX           ___ ___ ___ ___                         XXX &kp H &kp J &kp K     &kp L   &kp SEMI ___
+        ___ &kp Z &kp X &kp C &kp V &kp B                     ___ ___                               &kp N &kp M &kp COMMA &kp DOT &kp FSLH ___
+        ___ ___   ___   ___   ___               ___ ___ ___ ___ ___ ___                                   ___   ___       ___     ___      ___
       >;
     };
 
