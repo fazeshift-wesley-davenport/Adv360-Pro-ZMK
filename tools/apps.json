@@ -1,0 +1,12 @@
+{
+  "bound": {
+    "S": "Slack", "C": "Chrome", "L": "Linear", "D": "Conductor",
+    "Z": "Zed", "U": "Cursor", "T": "Terminal", "V": "Clipboard"
+  },
+  "suggested": {
+    "F": "Finder", "N": "Notion", "P": "Postman", "A": "Claude", "G": "ChatGPT",
+    "B": "Bitwarden", "Q": "TablePlus", "M": "Messages", "E": "Mail", "K": "Calendar",
+    "O": "OpenCode", "X": "VS Code", "H": "GitHub Desktop",
+    "Space": "Raycast search", ",": "Emoji picker", ".": "Snippets", ";": "System Settings"
+  }
+}

@@ -77,6 +77,8 @@ Every letter, digit, arrow, Enter, and Space sends Hyper (Ctrl+Opt+Shift+Cmd) pl
 
 Holding Del for the layer means Del does not auto-repeat from a cold hold. Tap Del, then hold it again within 175 ms, and it repeats. Bind targets in Raycast under Settings > Extensions > Applications, or as Raycast hotkeys:
 
+Bound in Raycast (solid on the wallpaper):
+
 | Key | Target |
 |-----|--------|
 | Hyper+S | Slack |
@@ -86,8 +88,31 @@ Holding Del for the layer means Del does not auto-repeat from a cold hold. Tap D
 | Hyper+Z | Zed |
 | Hyper+U | Cursor |
 | Hyper+T | Terminal |
+| Hyper+V | Clipboard History |
+
+Suggested, not bound yet (dashed on the wallpaper). Each follows the letter the key types:
+
+| Key | Target |
+|-----|--------|
 | Hyper+F | Finder |
-| Hyper+Space | Raycast root search (optional) |
+| Hyper+N | Notion |
+| Hyper+P | Postman |
+| Hyper+A | Claude |
+| Hyper+G | ChatGPT |
+| Hyper+B | Bitwarden |
+| Hyper+Q | TablePlus |
+| Hyper+M | Messages |
+| Hyper+E | Mail |
+| Hyper+K | Calendar |
+| Hyper+O | OpenCode |
+| Hyper+X | VS Code |
+| Hyper+H | GitHub Desktop |
+| Hyper+Space | Raycast root search |
+| Hyper+, | Raycast emoji picker |
+| Hyper+. | Raycast snippets |
+| Hyper+; | System Settings |
+
+Free: `W R I J Y` and the digits. The list lives in `tools/apps.json`; move a key to `bound` after you add the hotkey.
 
 ## Fn
 
