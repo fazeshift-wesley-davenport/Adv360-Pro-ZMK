@@ -17,7 +17,7 @@ label_map={
  '&kp PG_UP':'PgUp','&kp PG_DN':'PgDn','&kp HOME':'Home','&kp END':'End','&kp LG(LEFT)':('⌘←','line start',''),'&kp LG(RIGHT)':('⌘→','line end',''),
  '&kp LA(LEFT)':('⌥←','word',''),'&kp LA(RIGHT)':('⌥→','word',''),'&kp LC(LS(TAB))':('⌃⇧Tab','prev tab',''),'&kp LC(TAB)':('⌃Tab','next tab',''),
  '&kp LG(LBKT)':('⌘[','back',''),'&kp LG(RBKT)':('⌘]','forward',''),
- '&kp LG(GRAVE)':('⌘`','next window',''),'&kp LG(UP)':('⌘↑','doc top',''),'&kp LG(DOWN)':('⌘↓','doc end',''),'&kp LC(UP)':('⌃↑','Mission Ctl',''),
+ '&kp LG(GRAVE)':('⌘`','next window',''),'&kp LG(C)':('⌘C','copy',''),'&kp LG(V)':('⌘V','paste',''),'&kp LG(TAB)':('⌘Tab','prev app',''),'&kp LA(BSPC)':('⌥⌫','delete word',''),'&kp LG(UP)':('⌘↑','doc top',''),'&kp LG(DOWN)':('⌘↓','doc end',''),'&kp LC(UP)':('⌃↑','Mission Ctl',''),
  '&kp LC(LA(LEFT))':('◧','left half',''),'&kp LC(LA(RIGHT))':('◨','right half',''),'&kp LC(LA(UP))':('⬒','top half',''),'&kp LC(LA(DOWN))':('⬓','bottom half',''),
  '&kp LC(LA(C))':('▢','center',''),'&kp LC(LA(BSPC))':('↺','restore',''),'&kp LG(LA(RET))':('▣','maximize',''),'&kp LG(LA(LEFT))':('⇠','display',''),'&kp LG(LA(RIGHT))':('⇢','display',''),
  '&mpar':'( )','&mbkt':'[ ]','&mbrc':'{ }','&mtmpl':'${ }','&fat_arrow':'=>','&triple_eq':'===','&not_eq':'!==','&opt_chain':'?.','&nullish':'??',

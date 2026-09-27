@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+# One command per step of CHECKLIST.md. Run from anywhere: tools/ops <command>.
+set -euo pipefail
+
+ROOT=$(cd "$(dirname "$0")/.." && pwd)
+cd "$ROOT"
+# shellcheck source=ops.conf
+. tools/ops.conf
+
+die() { printf 'ops: %s\n' "$*" >&2; exit 1; }
+sha7() { git rev-parse --short=7 HEAD; }
+
+# Which half a .uf2 (or a mounted CURRENT.UF2) was built for: left, right, or unknown.
+uf2_half() {
+  local s
+  s=$(strings "$1" | grep -m1 'Adv360 Pro' || true)
+  case "$s" in
+    *"Adv360 Pro rt"*) echo right ;;
+    *"Adv360 Pro"*) echo left ;;
+    *) echo unknown ;;
+  esac
+}
+
+usage() {
+  cat <<'USAGE'
+usage: tools/ops <command>
+
+  check              preflight: tools present, keymap invariants (Mod = 3, Qwerty = 1, 76 keys per layer)
+  build              Docker build, Legacy left + right -> firmware/<ts>-<sha>-left-legacy.uf2, -right.uf2
+  fetch              download firmware-no-clique from the latest green CI run on the branch
+  flash left|right   print the file and key combo, wait for the drive, verify which half mounted. Never copies.
+  wallpaper          regenerate cheat sheet + wallpaper HTML, render the PNG into ~/Pictures, open it
+  trainer            copy the keymap into the trainer app, regenerate its data, build it
+USAGE
+}
+
+cmd_check() {
+  local rc=0
+  ok() { printf 'ok    %s\n' "$*"; }
+  bad() { printf 'FAIL  %s\n' "$*"; rc=1; }
+  if docker info >/dev/null 2>&1; then ok "docker running"; else bad "docker not running"; fi
+  if docker image inspect zmk >/dev/null 2>&1; then ok "zmk image"; else bad "zmk image missing (ops build creates it)"; fi
+  if gh auth status >/dev/null 2>&1; then ok "gh logged in"; else bad "gh not logged in (gh auth login)"; fi
+  if [ -x "$CHROME" ]; then ok "chrome"; else bad "chrome missing at $CHROME (edit tools/ops.conf)"; fi
+  if [ -f "$TRAINER_DIR/package.json" ]; then ok "trainer at $TRAINER_DIR"; else bad "trainer not at $TRAINER_DIR"; fi
+  if grep -qE '^#define MOD +3$' config/adv360.keymap; then ok "MOD = 3"; else bad "MOD != 3 (Mod must stay at index 3)"; fi
+  if grep -qE '^#define QWERTY +1$' config/adv360.keymap; then ok "QWERTY = 1"; else bad "QWERTY != 1 (must sit below every hold layer)"; fi
+  if KEYMAP=config/adv360.keymap python3 tools/gen_cheatsheet.py >/dev/null 2>&1; then
+    ok "76 bindings per layer"
+    if python3 -c 'import json,sys; b=json.load(open("tools/layers.json"))[0]; sys.exit(0 if b["name"]=="Base" and b["keys"][7]["l"]=="Mod" else 1)'; then
+      ok "Base position 7 = Mod"
+    else
+      bad "Base position 7 is not &mo MOD"
+    fi
+  else
+    bad "layer binding count (run: python3 tools/gen_cheatsheet.py)"
+  fi
+  return $rc
+}
+
+cmd_build() {
+  docker info >/dev/null 2>&1 || die "Docker is not running"
+  git diff --quiet -- config/version.dtsi || die "config/version.dtsi has local edits; commit or 'git checkout config/version.dtsi' first"
+  if ! docker image inspect zmk >/dev/null 2>&1; then
+    echo "ops: building the zmk toolchain image (one time, several minutes)"
+    docker build --tag zmk --file Dockerfile .
+  fi
+  trap 'git checkout -- config/version.dtsi' EXIT
+  bin/get_version_local.sh >/dev/null
+  local prefix
+  prefix="$(date -u +%Y%m%d%H%M)-$(sha7)"
+  docker run --rm -v "$ROOT/firmware:/app/firmware" -v "$ROOT/config:/app/config:ro" zmk bash -c '
+    set -e
+    west build -s zmk/app -p -d build/left -b adv360_left -- -DZMK_CONFIG=/app/config
+    west build -s zmk/app -p -d build/right -b adv360_right -- -DZMK_CONFIG=/app/config
+    cp build/left/zephyr/zmk.uf2 "/app/firmware/$1-left-legacy.uf2"
+    cp build/right/zephyr/zmk.uf2 "/app/firmware/$1-right.uf2"' _ "$prefix"
+  echo
+  echo "ops: built"
+  ls -1 "firmware/$prefix-"*.uf2
+}
+
+cmd_fetch() {
+  gh auth status >/dev/null 2>&1 || die "gh not logged in (gh auth login)"
+  local id sha
+  read -r id sha < <(gh run list --repo "$GH_REPO" --branch "$BRANCH" --workflow Build --status success --limit 1 \
+    --json databaseId,headSha --jq '.[0] | "\(.databaseId) \(.headSha)"')
+  [ -n "${id:-}" ] || die "no successful Build run on $BRANCH"
+  if [ "$sha" != "$(git rev-parse HEAD)" ]; then
+    printf 'ops: WARNING run %s built %s, local HEAD is %s\n' "$id" "${sha:0:7}" "$(sha7)" >&2
+  fi
+  gh run download "$id" --repo "$GH_REPO" --name firmware-no-clique --dir firmware
+  echo "ops: downloaded"
+  ls -1t firmware/*"${sha:0:7}"*.uf2
+}
+
+cmd_flash() {
+  local half=${1:-}
+  [[ $half == left || $half == right ]] || { usage; die "flash needs left or right"; }
+  local uf2=""
+  if [ "$half" = left ]; then
+    uf2=$(ls -t firmware/*-left-legacy.uf2 firmware/*-left.uf2 2>/dev/null | head -1 || true)
+  else
+    uf2=$(ls -t firmware/*-right.uf2 2>/dev/null | head -1 || true)
+  fi
+  [ -n "$uf2" ] || die "no $half .uf2 in firmware/ (run ops build or ops fetch)"
+  [ "$(uf2_half "$uf2")" = "$half" ] || die "$uf2 is not a $half-half firmware"
+  local combo="hold Mod and press the 1 key (below Kp on the left half)"
+  [ "$half" = right ] && combo="hold Mod and press the 3 key (below Mod on the right half)"
+  cat <<MSG
+Newest $half firmware: $uf2
+1. Plug the $half half into USB. Switch stays on.
+2. $combo. Fallback: paperclip double-click the reset button under the thumb cluster.
+Waiting up to ${MOUNT_TIMEOUT}s for $VOLUME ...
+MSG
+  local i=0
+  until [ -f "$VOLUME/CURRENT.UF2" ]; do
+    i=$((i + 1))
+    [ "$i" -lt "$MOUNT_TIMEOUT" ] || die "timed out, no drive mounted"
+    sleep 1
+  done
+  local mounted
+  mounted=$(uf2_half "$VOLUME/CURRENT.UF2")
+  [ "$mounted" = "$half" ] || die "the mounted drive is the $mounted half, you asked for $half. Eject it and retry."
+  cat <<MSG
+
+Mounted: the $half half. ops never copies firmware. Run this yourself:
+
+  cp "$ROOT/$uf2" "$VOLUME/"
+
+The drive ejects itself when the copy lands. Then power cycle both halves, left first.
+MSG
+}
+
+cmd_wallpaper() {
+  [ -x "$CHROME" ] || die "Chrome not at $CHROME (edit tools/ops.conf)"
+  python3 tools/gen_cheatsheet.py
+  python3 tools/gen_wallpaper.py
+  local out="$WALLPAPER_DIR/adv360-layout-wallpaper-$(date +%Y%m%d-%H%M).png"
+  "$CHROME" --headless=new --disable-gpu --hide-scrollbars --window-size=6016,3384 --screenshot="$out" "file://$ROOT/tools/wallpaper.html" 2>/dev/null
+  sips -g pixelWidth -g pixelHeight "$out" | awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{exit !(w==6016 && h==3384)}' || die "$out is not 6016x3384"
+  open "$out"
+  echo "ops: rendered $out"
+  echo "Set it in System Settings > Wallpaper > Add Photo."
+}
+
+cmd_trainer() {
+  [ -f "$TRAINER_DIR/package.json" ] || die "trainer not at $TRAINER_DIR (edit tools/ops.conf)"
+  cp config/adv360.keymap config/symbols.dtsi "$TRAINER_DIR/keymap/"
+  (
+    cd "$TRAINER_DIR"
+    pnpm gen:keymap || die "gen:keymap failed. A new keycode needs an entry in KEY in scripts/gen-keymap.py. keymap/ is already updated."
+    pnpm build
+    echo "ops: trainer status"
+    git status --short
+  )
+}
+
+case "${1:-help}" in
+  check|build|fetch|flash|wallpaper|trainer) "cmd_$1" "${@:2}" ;;
+  *) usage ;;
+esac

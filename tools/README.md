@@ -12,3 +12,16 @@ python3 tools/gen_cheatsheet.py && python3 tools/gen_wallpaper.py
 ```
 
 `apps.json`: `bound` = Raycast hotkeys that exist, drawn solid on the App board. `suggested` = mnemonic ideas, drawn dashed. Move a key from `suggested` to `bound` after you add the hotkey in Raycast.
+
+## ops
+
+`tools/ops` runs the mechanical steps of `../CHECKLIST.md`. Settings in `tools/ops.conf`.
+
+```
+tools/ops check              preflight: docker, gh, Chrome, trainer dir, Mod = 3, Qwerty = 1, 76 keys per layer
+tools/ops build              Docker: Legacy left + right -> firmware/<ts>-<sha>-left-legacy.uf2, -right.uf2
+tools/ops fetch              download firmware-no-clique from the latest green CI run
+tools/ops flash left|right   name the file, wait for the drive, verify the half. Prints the cp line; never copies.
+tools/ops wallpaper          regenerate the HTML, render the PNG into ~/Pictures, open it
+tools/ops trainer            copy the keymap into the trainer app, regenerate, build
+```
