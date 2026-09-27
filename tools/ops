@@ -30,6 +30,7 @@ usage: tools/ops <command>
   fetch              download firmware-no-clique from the latest green CI run on the branch
   flash left|right   print the file and key combo, wait for the drive, verify which half mounted. Never copies.
   wallpaper          regenerate cheat sheet + wallpaper HTML, render the PNG into ~/Pictures, open it
+  wallpaper-install [file]  set the newest rendered wallpaper (or a given image) on every display
   trainer            copy the keymap into the trainer app, regenerate its data, build it
 USAGE
 }
@@ -105,14 +106,25 @@ cmd_flash() {
   fi
   [ -n "$uf2" ] || die "no $half .uf2 in firmware/ (run ops build or ops fetch)"
   [ "$(uf2_half "$uf2")" = "$half" ] || die "$uf2 is not a $half-half firmware"
-  local combo="hold Mod and press the 1 key (below Kp on the left half)"
-  [ "$half" = right ] && combo="hold Mod and press the 3 key (below Mod on the right half)"
-  cat <<MSG
-Newest $half firmware: $uf2
-1. Plug the $half half into USB. Switch stays on.
-2. $combo. Fallback: paperclip double-click the reset button under the thumb cluster.
+  if [ "$half" = left ]; then
+    cat <<MSG
+Newest left firmware: $uf2
+1. Disconnect Adv360 Pro in macOS Bluetooth settings (do not Forget it).
+2. With USB unplugged, switch both halves off. Switch left on, wait five seconds, then switch right on.
+3. Plug the left half into USB. Hold Mod and tap the 1 key (left inner column, below Kp).
+   Fallback: paperclip double-click the left reset button under the thumb cluster.
 Waiting up to ${MOUNT_TIMEOUT}s for $VOLUME ...
 MSG
+  else
+    cat <<MSG
+Newest right firmware: $uf2
+1. Unplug the left USB cable and switch both halves off.
+2. Move USB to the right half. Switch left on, wait five seconds, then switch right on.
+3. Hold Mod and tap the 3 key (right inner column, below Mod).
+   Fallback: paperclip double-click the right reset button under the thumb cluster.
+Waiting up to ${MOUNT_TIMEOUT}s for $VOLUME ...
+MSG
+  fi
   local i=0
   until [ -f "$VOLUME/CURRENT.UF2" ]; do
     i=$((i + 1))
@@ -126,10 +138,15 @@ MSG
 
 Mounted: the $half half. ops never copies firmware. Run this yourself:
 
-  cp "$ROOT/$uf2" "$VOLUME/"
+  cp -X "$ROOT/$uf2" "$VOLUME/"
 
-The drive ejects itself when the copy lands. Then power cycle both halves, left first.
+The drive ejects itself when the copy lands.
 MSG
+  if [ "$half" = left ]; then
+    echo "Next: unplug left, switch both off, move USB to right, switch left on, wait five seconds, switch right on, then run tools/ops flash right."
+  else
+    echo "Next: unplug right, switch both off, switch left on, wait five seconds, switch right on, then move USB back to left. Verify Mod+V and reconnect Bluetooth if needed."
+  fi
 }
 
 cmd_wallpaper() {
@@ -141,7 +158,11 @@ cmd_wallpaper() {
   sips -g pixelWidth -g pixelHeight "$out" | awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{exit !(w==6016 && h==3384)}' || die "$out is not 6016x3384"
   open "$out"
   echo "ops: rendered $out"
-  echo "Set it in System Settings > Wallpaper > Add Photo."
+  echo "Install it with: tools/ops wallpaper-install"
+}
+
+cmd_wallpaper_install() {
+  swift tools/install_wallpaper.swift "$@"
 }
 
 cmd_trainer() {
@@ -158,5 +179,6 @@ cmd_trainer() {
 
 case "${1:-help}" in
   check|build|fetch|flash|wallpaper|trainer) "cmd_$1" "${@:2}" ;;
+  wallpaper-install) cmd_wallpaper_install "${@:2}" ;;
   *) usage ;;
 esac

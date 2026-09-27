@@ -151,7 +151,7 @@ After any change, walk `CHECKLIST.md`: keymap, keyboard, wallpaper, trainer, Ray
 
 1. Push to GitHub. Actions builds `firmware-no-clique` (use this) and `firmware-clique`.
 2. Local: `make` (Docker), output in `firmware/`.
-3. Flash left: USB, hold Mod and press the left inner-column key below Kp (Kinesis "macro1", position 20), copy the left file. Power cycle both. Flash right: USB, hold Mod and press the right inner-column key below Mod ("macro3", position 21), copy the right file. Fallback: paperclip double-click the reset button under each thumb cluster.
+3. Follow the step-by-step two-half procedure in `CHECKLIST.md`: disconnect Bluetooth without forgetting the pairing; restart both halves with USB unplugged; plug in and flash left using Mod + the inner-column `1` key below Kp (Kinesis "macro1", position 20); switch both off and move USB to right; restart both and flash right using Mod + the inner-column `3` key below Mod ("macro3", position 21); restart both and move USB back to left. `tools/ops flash left|right` checks the mounted half and prints the `cp -X` command. Fallback: paperclip double-click the reset button under that half's thumb cluster.
 
 The left half is built as the Kinesis Legacy variant (no Clique/Studio). Clique needs the Studio build, which keeps a layer-order table in flash that can hide layers above index 3.
 

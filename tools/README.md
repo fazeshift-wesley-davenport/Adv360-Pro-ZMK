@@ -23,5 +23,6 @@ tools/ops build              Docker: Legacy left + right -> firmware/<ts>-<sha>-
 tools/ops fetch              download firmware-no-clique from the latest green CI run
 tools/ops flash left|right   name the file, wait for the drive, verify the half. Prints the cp line; never copies.
 tools/ops wallpaper          regenerate the HTML, render the PNG into ~/Pictures, open it
+tools/ops wallpaper-install  set the newest rendered PNG on all displays (or pass a path)
 tools/ops trainer            copy the keymap into the trainer app, regenerate, build
 ```

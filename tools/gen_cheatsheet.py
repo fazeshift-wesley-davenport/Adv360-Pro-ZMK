@@ -67,8 +67,8 @@ def key(k,cls=''):
     e=' empty' if k['l']=='' else ''
     sub=f'<span class="s">{html.escape(k["s"])}</span>' if k['s'] else ''
     return f'<div class="k{e} {cls} {k["c"]}"><span class="m">{html.escape(k["l"])}</span>{sub}</div>'
-def half(rows,keys):
-    return '<div class="half">'+''.join('<div class="row">'+''.join(key(keys[p]) for p in r)+'</div>' for r in rows)+'</div>'
+def half(rows,keys,side):
+    return f'<div class="half {side}">'+''.join('<div class="row">'+''.join(key(keys[p]) for p in r)+'</div>' for r in rows)+'</div>'
 def thumbs(keys,side):
     if side=='L':
         return f'<div class="thumb L"><div class="trow">{key(keys[35],"s")}{key(keys[36],"s")}</div><div class="tbody">{key(keys[65],"big")}{key(keys[66],"big")}<div class="tcol">{key(keys[52],"s")}{key(keys[67],"s")}</div></div></div>'
@@ -82,7 +82,7 @@ notes={
  'Nav':'Hold Esc (left thumb column). LED purple. Right hand: arrows on the N E I O home keys, one direction per column (word jump above, line jump or page below). Inner column: tabs and next window. Outer column: back and forward. Left hand: Rectangle. Thumb mods stay live, so Shift+arrow selects.',
  'App':'Hold Del. LED cyan. Every key sends Hyper (Ctrl+Opt+Shift+Cmd) plus the Colemak letter under it. Solid label = hotkey bound in Raycast. Dashed = suggested app, not bound yet. Bind in Raycast: search the app, Cmd+K, Add Hotkey, then hold Del and press the key.',
 }
-sections=''.join(f'<section><h2>{l["name"]}</h2><p>{notes.get(l["name"],"")}</p><div class="board">{half(L_rows,l["keys"])}{thumbs(l["keys"],"L")}{thumbs(l["keys"],"R")}{half(R_rows,l["keys"])}</div></section>' for l in layers)
+sections=''.join(f'<section><h2>{l["name"]}</h2><p>{notes.get(l["name"],"")}</p><div class="board">{half(L_rows,l["keys"],"L")}{thumbs(l["keys"],"L")}{thumbs(l["keys"],"R")}{half(R_rows,l["keys"],"R")}</div></section>' for l in layers)
 page=f'''<!doctype html><html><head><meta charset="utf-8"><title>Advantage 360 Pro layers</title>
 <style>
 body{{font:13px/1.35 -apple-system,Helvetica,Arial,sans-serif;background:#f6f6f7;color:#111;margin:24px}}
@@ -90,6 +90,7 @@ h1{{font-size:20px;margin:0 0 4px}} h2{{font-size:16px;margin:0 0 4px}} p{{margi
 section{{margin-bottom:28px}}
 .board{{display:grid;grid-template-columns:auto auto auto auto;gap:14px;align-items:start;background:#fff;border:1px solid #ddd;border-radius:10px;padding:14px;width:max-content}}
 .row{{display:flex;gap:4px;margin-bottom:4px}}
+.half.R .row{{justify-content:flex-end}}
 .k{{width:70px;height:46px;border:1px solid #bbb;border-radius:6px;background:#fafafa;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:12px;padding:2px;box-sizing:border-box;overflow:hidden;word-break:break-word;line-height:1.15}}
 .k .s{{font-size:9.5px;color:#666}} .k.bound .s{{color:#0369a1;font-weight:600}} .k.sugg{{border-style:dashed}} .k.sugg .s{{color:#888;font-style:italic}} .k.warn .s{{color:#b45309}}
 .k.empty{{background:#eee;border-color:#e2e2e2}}

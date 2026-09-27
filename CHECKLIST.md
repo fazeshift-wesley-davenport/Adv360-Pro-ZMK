@@ -15,19 +15,19 @@ Each section has a `tools/ops` command that does the mechanical part. Start with
 
 ## 2. Keyboard
 
-The left half holds the keymap. Reflash the right half only when `config/west.yml` or the board files change.
+Flash both halves from the same successful **firmware-no-clique** build, left first. The left half holds the keymap, but this sequence keeps both halves on the same build. `tools/ops flash <half>` selects the newest file, waits for `ADV360PRO`, checks which half mounted, and prints the copy command. It never copies the firmware.
 
-- [ ] `tools/ops flash left`. It names the newest left file, waits for the drive, and checks the drive really is the left half. It never copies.
-- [ ] Plug the **left half** into the Mac with USB-C. Leave its power switch on.
-- [ ] Hold **Mod** (top of the right half's inner column) and press the **1** key (below Kp on the left half).
-- [ ] A drive named `ADV360PRO` appears in Finder and `ops` prints the `cp` line.
-- [ ] Run that `cp`. The drive ejects itself in a second or two. A "disk not ejected properly" warning is normal.
-- [ ] Unplug. Switch both halves off. Switch the left on, wait five seconds, switch the right on.
-- [ ] Verify:
-  - [ ] Hold Mod, press the V cap. The version string types out, ending in the new commit.
-  - [ ] Type `asdf` on the caps. Expect `arst`.
-  - [ ] Try every key you changed.
-- [ ] Bluetooth to the Mac survives a flash. Reconnect only if you also ran a settings reset.
+1. [ ] In macOS Bluetooth settings, **Disconnect** Adv360 Pro. Do not **Forget** it; flashing does not erase the pairing.
+2. [ ] Unplug the keyboard USB cable. Restart both halves: switch both **off**, switch the **left on**, wait five seconds, then switch the **right on**.
+3. [ ] Plug the **left half** into the Mac with USB-C. Leave its power switch on. Run `tools/ops flash left`.
+4. [ ] Hold **Mod** (top of the right half's inner column) and tap the **1** key (left inner column, below Kp—not the number row).
+5. [ ] Wait for `ADV360PRO` in Finder. `ops` must identify it as the **left** half. Run the `cp -X` command it prints with the left `.uf2`. The drive ejects itself; a "disk not ejected properly" warning is normal.
+6. [ ] Unplug the left USB cable and switch **both halves off**. Move the cable to the **right half**. Switch the **left on**, wait five seconds, then switch the **right on**. Run `tools/ops flash right`.
+7. [ ] Hold **Mod** and tap the **3** key (right inner column, below Mod—not the number row).
+8. [ ] Wait for `ADV360PRO` in Finder. `ops` must identify it as the **right** half. Run the `cp -X` command it prints with the right `.uf2`. Let the drive eject itself.
+9. [ ] Unplug the right USB cable. Restart both halves again: both **off**, left **on**, wait five seconds, right **on**. Move the USB cable back to the **left half**.
+10. [ ] Verify: hold Mod and press the V cap; the typed version should end in the new commit. Type `asdf` on the caps and expect `arst`. Try the keys you changed.
+11. [ ] Reconnect Adv360 Pro in macOS Bluetooth settings if you want to use it wirelessly. A normal flash does not require re-pairing.
 
 If the key combo does nothing:
 
@@ -45,7 +45,7 @@ If the halves flash red and never link:
 - [ ] If Raycast hotkeys changed, edit `tools/apps.json` (`bound` = hotkey exists, `suggested` = idea).
 - [ ] `tools/ops wallpaper`. Regenerates the HTML, renders `~/Pictures/adv360-layout-wallpaper-<date>.png` at 6016x3384, opens it.
 - [ ] Check nothing is clipped at the right edge and the thumb clusters do not overlap.
-- [ ] Set it: System Settings > Wallpaper > Add Photo. A new file name each time, since macOS caches by path.
+- [ ] `tools/ops wallpaper-install` sets the newest rendered PNG on every display. Pass a path to install a specific file. A new file name each time avoids macOS caching by path.
 - [ ] Commit `tools/` changes.
 
 ## 4. Trainer website

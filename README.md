@@ -18,8 +18,9 @@ Kinesis Advantage 360 Pro ZMK config. Fork of [KinesisCorporation/Adv360-Pro-ZMK
 ## Firmware
 
 - Build the left half as the **Legacy** variant (no `-S studio-rpc-usb-uart`, no `CONFIG_ZMK_STUDIO=y`). The Studio/Clique build keeps a layer-order table in flash that can hide layers above index 3 (symptom: Mod dead, no LED). CI artifact: `firmware-no-clique`.
-- Right half: `-b adv360_right`, no keymap logic, reflash only when board files change.
-- Bootloader: Mod + `1` (left), Mod + `3` (right); fallback paperclip double-click under the thumb cluster. Drive `ADV360PRO`; `strings CURRENT.UF2 | grep "Adv360 Pro"` prints `rt` for the right half.
+- Right half: `-b adv360_right`, no keymap logic. The full flash procedure updates both halves from the same build.
+- Flash step by step: disconnect (do not forget) Bluetooth; with USB unplugged, restart both halves left first; plug in and flash left with Mod + the left inner-column `1` key; switch both off; move USB to right; start both left first and flash right with Mod + the right inner-column `3` key; restart both and move USB back to left. Use `tools/ops flash left|right` to verify each mounted `ADV360PRO` drive and print the `cp -X` command. See `CHECKLIST.md` for the full sequence and verification.
+- Bootloader fallback: paperclip double-click under the thumb cluster. `strings CURRENT.UF2 | grep "Adv360 Pro"` prints `rt` for the right half.
 - Settings reset: flash `settings-reset.uf2` per half (it re-enters the bootloader by itself), then real firmware; re-pair Bluetooth.
 
 ## Tools
@@ -30,6 +31,7 @@ tools/ops build              Docker → firmware/<ts>-<sha>-left-legacy.uf2 + -r
 tools/ops fetch              gh: firmware-no-clique from the latest green run on branch wesley
 tools/ops flash left|right   names the file, waits for the drive, verifies the half, prints the cp. Never copies.
 tools/ops wallpaper          gen_cheatsheet.py + gen_wallpaper.py → Chrome headless 6016x3384 → ~/Pictures. Render only.
+tools/ops wallpaper-install  set the newest rendered PNG (or a given path) on every display.
 tools/ops trainer            copies keymap + symbols into the trainer, pnpm gen:keymap, pnpm build
 ```
 

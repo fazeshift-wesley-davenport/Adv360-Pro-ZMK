@@ -11,7 +11,7 @@ def key(k,cls=''):
     e=' empty' if k['l']=='' else ''
     sub=f'<span class="s">{html.escape(k["s"])}</span>' if k['s'] else ''
     return f'<div class="k{e} {cls} {k["c"]}"><span class="m">{html.escape(k["l"])}</span>{sub}</div>'
-def half(rows,keys): return '<div class="half">'+''.join('<div class="row">'+''.join(key(keys[p]) for p in r)+'</div>' for r in rows)+'</div>'
+def half(rows,keys,side): return f'<div class="half {side}">'+''.join('<div class="row">'+''.join(key(keys[p]) for p in r)+'</div>' for r in rows)+'</div>'
 def thumbs(keys,side):
     if side=='L': return f'<div class="thumb L"><div class="trow">{key(keys[35],"s")}{key(keys[36],"s")}</div><div class="tbody">{key(keys[65],"big")}{key(keys[66],"big")}<div class="tcol">{key(keys[52],"s")}{key(keys[67],"s")}</div></div></div>'
     return f'<div class="thumb R"><div class="trow">{key(keys[37],"s")}{key(keys[38],"s")}</div><div class="tbody"><div class="tcol">{key(keys[53],"s")}{key(keys[68],"s")}</div>{key(keys[69],"big")}{key(keys[70],"big")}</div></div>'
@@ -20,7 +20,7 @@ def board(name,trigger,notes,zoom,cls=''):
     chips=''.join(f'<span class="chip">{html.escape(n)}</span>' for n in notes)
     return f'''<section class="{cls}" style="--accent:{ACCENT[name]};--z:{zoom}"><h2><span class="dot"></span>{name}<small>{html.escape(trigger)}</small><em>{LED[name]}</em></h2>
 <div class="chips">{chips}</div>
-<div class="board">{half(L_rows,k)}{thumbs(k,'L')}{thumbs(k,'R')}{half(R_rows,k)}</div></section>'''
+<div class="board">{half(L_rows,k,'L')}{thumbs(k,'L')}{thumbs(k,'R')}{half(R_rows,k,'R')}</div></section>'''
 base=board('Base','Colemak-DH',[
  'Thumbs mirrored: Cmd outer · Opt inner · Ctrl upper column · layer hold lower column',
  'Tap left Cmd = ⌘Space (Raycast)','Tap right Cmd = ⌘K (palette)',
@@ -46,6 +46,7 @@ h2 small{{font-size:15px;color:#9aa4b2;font-weight:400}} h2 em{{font-style:norma
 .hero .chip{{font-size:14px}}
 .board{{display:grid;grid-template-columns:auto auto auto auto;gap:12px;align-items:start;zoom:var(--z);width:max-content}}
 .row{{display:flex;gap:4px;margin-bottom:4px}}
+.half.R .row{{justify-content:flex-end}}
 .k{{width:76px;height:74px;border:1px solid #2b3039;border-radius:6px;background:#181c23;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:15px;padding:3px;box-sizing:border-box;overflow:hidden;word-break:normal;overflow-wrap:normal;line-height:1.15;color:#e6e8eb;gap:2px}}
 .k .s{{font-size:12.5px;color:#8b93a1;line-height:1.1}} .k.hold .s{{color:#c3c8d1}}
 .k.bound .s{{color:var(--accent);font-weight:600;font-size:13px}}
