@@ -5,8 +5,8 @@ SAFE=200               # side margin: the 3456x2234 laptop screen crops ~195px p
 layers={l['name']:l['keys'] for l in json.load(open(os.path.join(HERE,'layers.json')))}
 L_rows=[[0,1,2,3,4,5,6],[14,15,16,17,18,19,20],[28,29,30,31,32,33,34],[46,47,48,49,50,51],[60,61,62,63,64]]
 R_rows=[[7,8,9,10,11,12,13],[21,22,23,24,25,26,27],[39,40,41,42,43,44,45],[54,55,56,57,58,59],[71,72,73,74,75]]
-ACCENT={'Base':'#9aa4b2','Nav':'#c084fc','Sym':'#f87171','App':'#22d3ee','Fn':'#60a5fa','Mod':'#4ade80','Qwerty':'#e5e7eb'}
-LED={'Base':'LED off','Nav':'LED purple','Sym':'LED red','App':'LED cyan','Fn':'LED blue','Mod':'LED green','Qwerty':'LED white'}
+ACCENT={'Base':'#9aa4b2','Nav':'#c084fc','Sym':'#f87171','App':'#22d3ee','Fn':'#60a5fa'}
+LED={'Base':'LED off','Nav':'LED purple','Sym':'LED red','App':'LED cyan','Fn':'LED blue'}
 def key(k,cls=''):
     e=' empty' if k['l']=='' else ''
     sub=f'<span class="s">{html.escape(k["s"])}</span>' if k['s'] else ''
@@ -24,16 +24,14 @@ def board(name,trigger,notes,zoom,cls=''):
 base=board('Base','Colemak-DH',[
  'Thumbs mirrored: Cmd outer · Opt inner · Ctrl upper column · layer hold lower column',
  'Tap left Cmd = ⌘Space (Raycast)','Tap right Cmd = ⌘K (palette)',
- 'Tap Del, then hold it again to auto-repeat','Kp locks Sym','Mod+Q toggles Qwerty'],1.18,'hero')
+ 'Tap Del, then hold it again to auto-repeat','Kp locks Sym'],1.18,'hero')
 row1=board('Nav','hold Esc (left thumb column)',['Arrows on N E I O home keys · word jump above · line / page below','Inner column: tabs, next window · outer: back, forward','Left hand: Rectangle · Shift+arrow selects'],.74) \
    + board('Sym','hold Tab (right thumb column) · Kp locks',['Left: TypeScript operators, autopairs put the cursor inside','Right: numpad · 0 on ↑ · . on ↓'],.74)
 row2=board('App','hold Del',['✦ = Ctrl+Opt+Shift+Cmd + the Colemak letter under the key','Solid name = bound in Raycast','Dashed = suggested app, not bound yet','Bind: Raycast › app › ⌘K › Add Hotkey › hold Del + key'],.74) \
    + board('Fn','hold either outer bottom pinky key',['F1 on = · F2–F6 on 1–5 · F7–F11 on 6–0 · F12 on -','Brightness W F · media L U Y · volume N E I'],.74)
-row3=board('Mod','hold the top inner key, right half',['Stock Kinesis layer, untouched','Boot = flash: left half below Kp, right half below Mod','Version on the V cap · Qwerty on the Q cap'],.6) \
-   + board('Qwerty','Mod+Q toggles',['Transition overlay · sits below every hold layer','Resets to Colemak-DH on power cycle'],.6)
 page=f'''<!doctype html><html><head><meta charset="utf-8"><style>
 html{{zoom:2}} body{{margin:0;width:{W}px;height:{H}px;background:#0e1014;color:#e6e8eb;font:13px/1.3 -apple-system,Helvetica,Arial,sans-serif;overflow:hidden}}
-.wrap{{padding:54px {SAFE}px 0;display:flex;flex-direction:column;gap:18px;align-items:center}}
+.wrap{{padding:0 {SAFE}px;box-sizing:border-box;height:{H}px;display:flex;flex-direction:column;gap:28px;align-items:center;justify-content:center}}
 .rowx{{display:flex;gap:56px;justify-content:center;align-items:flex-start}}
 section{{--accent:#888;display:flex;flex-direction:column;align-items:center}}
 h2{{font-size:22px;margin:0 0 4px;font-weight:600;display:flex;align-items:center;gap:10px;color:#f3f4f6}}
@@ -61,6 +59,5 @@ section .k:not(.empty):not(.sugg){{border-color:color-mix(in srgb,var(--accent) 
 {base}
 <div class="rowx">{row1}</div>
 <div class="rowx">{row2}</div>
-<div class="rowx">{row3}</div>
 </div></body></html>'''
 open(os.path.join(HERE,'wallpaper.html'),'w').write(page); print('ok')

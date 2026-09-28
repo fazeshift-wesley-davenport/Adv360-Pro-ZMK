@@ -1,7 +1,7 @@
 # Layout images
 
 `gen_cheatsheet.py` reads `config/adv360.keymap` and `apps.json`, writes `layers.json` and `cheatsheet.html` (light, one board per layer).
-`gen_wallpaper.py` reads `layers.json` and writes `wallpaper.html`: Base full width and centered, the other layers in pairs below, side margins that survive the 3456x2234 laptop crop.
+`gen_wallpaper.py` reads `layers.json` and writes `wallpaper.html`: Base full width, then Nav/Sym and App/Fn in pairs. Mod and Qwerty stay in the full cheat sheet but are omitted from the wallpaper. Side margins survive the 3456x2234 laptop crop.
 
 Render the wallpaper at 6016x3384:
 
