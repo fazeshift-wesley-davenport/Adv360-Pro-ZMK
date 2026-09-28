@@ -79,12 +79,11 @@ Thumb modifiers stay active, so Shift+arrow selects.
 
 Left hand, Rectangle:
 
-- `A` previous display (Cmd+Opt+←), `G` next display (Cmd+Opt+→)
-- `R` (S cap) Left, `S` (D cap) Center, `T` (F cap) Right
-- `W` top, `X` bottom, `C` (C cap) maximize (Cmd+Opt+Return), `F` (E cap) restore
+- `R` (S cap) previous display (Cmd+Opt+←), `S` (D cap) center, `T` (F cap) next display (Cmd+Opt+→)
+- `C` (C cap) maximize (Cmd+Opt+Return), `F` (E cap) restore
 - `Q` next window of the app (Cmd+`), `B` (T cap) Mission Control
 
-Left, Center, Right, and restore use Rectangle's default Ctrl+Opt chords. Check they are enabled in Rectangle preferences.
+Center and restore use Rectangle's default Ctrl+Opt chords. Display moves and maximize use the Cmd+Opt chords set in Rectangle preferences.
 
 ## Sym (hold Tab)
 
