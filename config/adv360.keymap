@@ -20,9 +20,10 @@
 #define ___ &trans
 #define XXX &none
 
-/* Window actions: Center uses Option+Return. The C-cap Nav key taps
- * Rectangle Maximize (Cmd+Opt+Return) or holds macOS Full Screen (Ctrl+Cmd+F). */
-#define WIN_CENTER &kp LA(RET)
+/* Window actions: Maximize is Rectangle's Cmd+Opt+Return; Full Screen is macOS's
+ * native Ctrl+Cmd+F. Restore and display moves keep their existing shortcuts. */
+#define WIN_MAX &kp LG(LA(RET))
+#define WIN_FULLSCREEN &kp LC(LG(F))
 #define WIN_RESTORE &kp LC(LA(BSPC))
 #define WIN_PREV_DISPLAY &kp LG(LA(LEFT))
 #define WIN_NEXT_DISPLAY &kp LG(LA(RIGHT))
@@ -45,14 +46,6 @@
       #include "macros.dtsi"
       #include "version.dtsi"
       #include "symbols.dtsi"
-
-      win_size: window_size_tap_hold {
-          compatible = "zmk,behavior-hold-tap";
-          #binding-cells = <2>;
-          tapping-term-ms = <250>;
-          flavor = "tap-preferred";
-          bindings = <&kp>, <&kp>;
-      };
 
       /* Thumb layer keys: tap = key, hold = layer. Balanced so that
        * pressing and releasing another key during the hold picks the layer. */
@@ -170,8 +163,8 @@
       bindings = <
         ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
         ___ &kp LG(GRAVE) ___        WIN_RESTORE ___        &kp LC(UP)       ___                                                          ___ &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
-        ___ ___           WIN_PREV_DISPLAY WIN_CENTER WIN_NEXT_DISPLAY ___    ___              ___ ___ ___ ___                             ___ &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
-        ___ ___           ___        &win_size LC(LG(F)) LG(LA(RET))     ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
+        ___ ___           WIN_PREV_DISPLAY WIN_MAX    WIN_NEXT_DISPLAY ___    ___              ___ ___ ___ ___                             ___ &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
+        ___ ___           ___        WIN_FULLSCREEN ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
         ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
       >;
     };

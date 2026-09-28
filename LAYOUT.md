@@ -79,11 +79,11 @@ Thumb modifiers stay active, so Shift+arrow selects.
 
 Left hand, window controls:
 
-- `R` (S cap) previous display (Cmd+Opt+←), `S` (D cap) center (Option+Return), `T` (F cap) next display (Cmd+Opt+→)
-- `C` (C cap) tap Rectangle maximize (Cmd+Opt+Return), hold macOS Full Screen (Ctrl+Cmd+F), `F` (E cap) restore
+- `R` (S cap) previous display (Cmd+Opt+←), `S` (D cap) maximize (Cmd+Opt+Return), `T` (F cap) next display (Cmd+Opt+→)
+- `C` (C cap) macOS Full Screen (Ctrl+Cmd+F), `F` (E cap) restore
 - `Q` next window of the app (Cmd+`), `B` (T cap) Mission Control
 
-Center sends Option+Return. Tap Maximize for Rectangle's Cmd+Opt+Return shortcut; hold the same key for macOS's native Control+Command+F Full Screen shortcut. Restore keeps Ctrl+Opt+Backspace; display moves keep the Cmd+Opt arrow shortcuts.
+Maximize sends Rectangle's Cmd+Opt+Return. Full Screen sends macOS's native Control+Command+F. Restore keeps Ctrl+Opt+Backspace; display moves keep the Cmd+Opt arrow shortcuts.
 
 ## Sym (hold Tab)
 

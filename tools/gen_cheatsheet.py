@@ -18,7 +18,7 @@ label_map={
  '&kp LA(LEFT)':('⌥←','word',''),'&kp LA(RIGHT)':('⌥→','word',''),'&kp LC(LS(TAB))':('⌃⇧Tab','prev tab',''),'&kp LC(TAB)':('⌃Tab','next tab',''),
  '&kp LG(LBKT)':('⌘[','back',''),'&kp LG(RBKT)':('⌘]','forward',''),
  '&kp LG(GRAVE)':('⌘`','next window',''),'&kp LG(C)':('⌘C','copy',''),'&kp LG(V)':('⌘V','paste',''),'&kp LG(TAB)':('⌘Tab','prev app',''),'&kp LA(BSPC)':('⌥⌫','delete word',''),'&kp LG(UP)':('⌘↑','doc top',''),'&kp LG(DOWN)':('⌘↓','doc end',''),'&kp LC(UP)':('⌃↑','Mission Ctl',''),
- '&kp LA(RET)':('▢','center',''),'&kp LC(LA(BSPC))':('↺','restore',''),'&win_size':('▣','max / full',''),
+ '&kp LG(LA(RET))':('▣','maximize',''),'&kp LC(LA(BSPC))':('↺','restore',''),'&kp LC(LG(F))':('⛶','full screen',''),
  '&kp LG(LA(LEFT))':('⇠','display',''),'&kp LG(LA(RIGHT))':('⇢','display',''),
  '&mpar':'( )','&mbkt':'[ ]','&mbrc':'{ }','&mtmpl':'${ }','&fat_arrow':'=>','&triple_eq':'===','&not_eq':'!==','&opt_chain':'?.','&nullish':'??',
  '&and_and':'&&','&or_or':'||','&kp LT':'<','&kp GT':'>','&kp TILDE':'~','&kp UNDER':'_','&kp PLUS':'+','&kp ASTRK':'*','&kp COLON':':','&kp DQT':'"','&kp PRCNT':'%',
@@ -79,7 +79,7 @@ notes={
  'Fn':'Hold either outer bottom pinky key. LED blue. F-keys on the top row, brightness on W/F, media on L/U/Y and N/E/I, Caps Lock on the old Caps key.',
  'Mod':'Hold the top inner key on the right half. LED green. Stock Kinesis layer: Bluetooth profiles on 1–5, Boot on the key below Kp (left half) or below Mod (right half), version on the V cap, Qwerty toggle on the Q cap.',
  'Sym':'Hold Tab (right thumb column), or tap Kp to lock. LED red. Left hand: TypeScript operators and autopairs. Right hand: numpad, 0 on the up-arrow key.',
- 'Nav':'Hold Esc (left thumb column). LED purple. Right hand: arrows on the N E I O home keys, one direction per column (word jump above, line jump or page below). Inner column: tabs and next window. Outer column: back and forward. Left hand: window placement; tap C-cap for Rectangle Maximize, hold it for macOS Full Screen. Thumb mods stay live, so Shift+arrow selects.',
+ 'Nav':'Hold Esc (left thumb column). LED purple. Right hand: arrows on the N E I O home keys, one direction per column (word jump above, line jump or page below). Inner column: tabs and next window. Outer column: back and forward. Left hand: window placement, Rectangle Maximize, and native macOS Full Screen. Thumb mods stay live, so Shift+arrow selects.',
  'App':'Hold Del. LED cyan. Every key sends Hyper (Ctrl+Opt+Shift+Cmd) plus the Colemak letter under it. Solid label = hotkey bound in Raycast. Dashed = suggested app, not bound yet. Bind in Raycast: search the app, Cmd+K, Add Hotkey, then hold Del and press the key.',
 }
 sections=''.join(f'<section><h2>{l["name"]}</h2><p>{notes.get(l["name"],"")}</p><div class="board">{half(L_rows,l["keys"],"L")}{thumbs(l["keys"],"L")}{thumbs(l["keys"],"R")}{half(R_rows,l["keys"],"R")}</div></section>' for l in layers)
