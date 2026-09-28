@@ -77,13 +77,13 @@ Outer column: `\` = back (Cmd+[), `'` = forward (Cmd+]).
 
 Thumb modifiers stay active, so Shift+arrow selects.
 
-Left hand, Rectangle:
+Left hand, window controls:
 
-- `R` (S cap) previous display (Cmd+Opt+←), `S` (D cap) center, `T` (F cap) next display (Cmd+Opt+→)
-- `C` (C cap) maximize (Cmd+Opt+Return), `F` (E cap) restore
+- `R` (S cap) previous display (Cmd+Opt+←), `S` (D cap) center (Option+Return), `T` (F cap) next display (Cmd+Opt+→)
+- `C` (C cap) macOS Fill/maximize (Fn+Control+F), `F` (E cap) restore
 - `Q` next window of the app (Cmd+`), `B` (T cap) Mission Control
 
-Center and restore use Rectangle's default Ctrl+Opt chords. Display moves and maximize use the Cmd+Opt chords set in Rectangle preferences.
+Center sends Option+Return. Maximize sends macOS's native Fill shortcut (Fn+Control+F). Restore keeps Ctrl+Opt+Backspace; display moves keep the Cmd+Opt arrow shortcuts.
 
 ## Sym (hold Tab)
 
