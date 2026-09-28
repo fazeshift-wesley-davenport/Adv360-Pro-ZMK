@@ -20,8 +20,8 @@
 #define ___ &trans
 #define XXX &none
 
-/* Window actions: Center uses Option+Return; macOS Fill uses Fn/Globe+Control+F.
- * Restore and display moves keep their existing shortcuts. */
+/* Window actions: Center uses Option+Return. The C-cap Nav key taps
+ * Rectangle Maximize (Cmd+Opt+Return) or holds macOS Full Screen (Ctrl+Cmd+F). */
 #define WIN_CENTER &kp LA(RET)
 #define WIN_RESTORE &kp LC(LA(BSPC))
 #define WIN_PREV_DISPLAY &kp LG(LA(LEFT))
@@ -46,15 +46,12 @@
       #include "version.dtsi"
       #include "symbols.dtsi"
 
-      /* macOS Window > Fill: Fn/Globe+Control+F. */
-      win_max: win_max {
-          compatible = "zmk,behavior-macro";
-          #binding-cells = <0>;
-          wait-ms = <30>;
-          tap-ms = <30>;
-          bindings = <&macro_press &kp GLOBE &kp LCTRL>,
-                     <&macro_tap &kp F>,
-                     <&macro_release &kp LCTRL &kp GLOBE>;
+      win_size: window_size_tap_hold {
+          compatible = "zmk,behavior-hold-tap";
+          #binding-cells = <2>;
+          tapping-term-ms = <250>;
+          flavor = "tap-preferred";
+          bindings = <&kp>, <&kp>;
       };
 
       /* Thumb layer keys: tap = key, hold = layer. Balanced so that
@@ -174,7 +171,7 @@
         ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
         ___ &kp LG(GRAVE) ___        WIN_RESTORE ___        &kp LC(UP)       ___                                                          ___ &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
         ___ ___           WIN_PREV_DISPLAY WIN_CENTER WIN_NEXT_DISPLAY ___    ___              ___ ___ ___ ___                             ___ &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
-        ___ ___           ___        &win_max     ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
+        ___ ___           ___        &win_size LC(LG(F)) LG(LA(RET))     ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
         ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
       >;
     };
