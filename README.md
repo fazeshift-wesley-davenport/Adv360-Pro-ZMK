@@ -21,6 +21,7 @@ Kinesis Advantage 360 Pro ZMK config. Fork of [KinesisCorporation/Adv360-Pro-ZMK
 - Right half: `-b adv360_right`, no keymap logic. The full flash procedure updates both halves from the same build.
 - Flash step by step: disconnect (do not forget) Bluetooth; with USB unplugged, restart both halves left first; plug in and flash left with Mod + the left inner-column `1` key; switch both off; move USB to right; start both left first and flash right with Mod + the right inner-column `3` key; restart both and move USB back to left. Use `tools/ops flash left|right` to verify each mounted `ADV360PRO` drive and print the `cp -X` command. See `CHECKLIST.md` for the full sequence and verification.
 - Bootloader fallback: paperclip double-click under the thumb cluster. `strings CURRENT.UF2 | grep "Adv360 Pro"` prints `rt` for the right half.
+- Agents flashing: never write a flash script or dispatch a subagent. Use direct tool calls: `tools/ops flash left|right` (background, it waits for the drive), then `cp -X` once it confirms the half. Be patient: the human switches halves and presses keys between steps, so wait for them and re-run the helper if it times out.
 - Settings reset: flash `settings-reset.uf2` per half (it re-enters the bootloader by itself), then real firmware; re-pair Bluetooth.
 
 ## Tools
