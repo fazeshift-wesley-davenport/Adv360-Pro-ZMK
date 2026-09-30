@@ -7,7 +7,7 @@ Kinesis Advantage 360 Pro ZMK config. Fork of [KinesisCorporation/Adv360-Pro-ZMK
 - Base: Colemak-DH (matrix variant). Layer order `Base 0, Qwerty 1, Fn 2, Mod 3, Sym 4, Nav 5, App 6` + 4 reserved.
 - Mod stays at index 3 with the stock layer. Qwerty at 1, below every hold layer, so Mod+Q toggles it off again.
 - Thumbs, mirrored, outside → in: Cmd (tap: left ⌘Space, right ⌘K), Opt, Ctrl. Big keys: Bksp Del | Enter Space. Lower column: Esc/hold Nav | Tab/hold Sym. Hold Del = App.
-- Home-row mods, mirrored by finger: `A R S T` = Cmd Opt Ctrl Shift, `O I E N` the same. Balanced, 280 ms, quick-tap 175, prior-idle 150, cross-hand + thumbs only (`hold-trigger-key-positions`).
+- Home-row mods, mirrored by finger from index to pinky: Cmd, Opt, Ctrl, Shift. Colemak-DH: `T S R A` and `N E I O`. Balanced, 280 ms, quick-tap 175, prior-idle 150, cross-hand + thumbs only (`hold-trigger-key-positions`).
 - Inner column: 1 = ⌘C, 2 = ⌘V, 3 = ⌘Tab, 4 = ⌥⌫. Kp = Sym lock. Caps key = caps_word.
 - Nav: arrows on N E I O, one direction per column (⌥ word above, ⌘ line / Pg below); inner column tabs + ⌘`; outer column ⌘[ ⌘]; left hand Rectangle chords.
 - Sym: left hand TS macros (`=> === !== ?. ?? && || ${} ()[]{}`) in `config/symbols.dtsi`; right hand numpad, 0 on ↑.

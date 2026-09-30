@@ -40,16 +40,16 @@ Both Cmd keys are hold-taps. Hold = Cmd. Tap left Cmd = Cmd+Space (Raycast). Tap
 Hold a home-row key and it becomes a modifier. Tap it and it types the letter.
 
 ```
- A   R   S   T          N   E   I   O
- Cmd Opt Ctrl Shift     Shift Ctrl Opt Cmd
+ A     R    S   T          N   E   I    O
+ Shift Ctrl Opt Cmd        Cmd Opt Ctrl Shift
 ```
 
 Rules that keep typing clean ("timeless" home-row mods):
 
 - A hold only counts when the next key is on the other hand or a thumb. Same-hand rolls like `st` or `ne` always type letters.
 - 280 ms tapping term, 175 ms quick-tap (tap then hold repeats the letter), 150 ms prior-idle guard.
-- Same-hand shortcuts still need the thumb modifiers: Cmd+C, Cmd+V, Cmd+Z, Cmd+A are all left-hand letters, so use the left thumb Cmd or the copy/paste keys beside B and G.
-- The Qwerty overlay has the same mods on A S D F and J K L ;.
+- Same-hand shortcuts still need the thumb modifiers: Cmd+C, Cmd+V, Cmd+Z, Cmd+A are all left-hand letters, so use a thumb Cmd or the copy/paste keys beside B and G.
+- The Qwerty overlay uses the same finger order on A S D F and J K L ;.
 
 ## Inner-column keys (the ones capped 1, 2, 3, 4)
 
