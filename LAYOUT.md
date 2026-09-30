@@ -64,13 +64,13 @@ Copy and paste sit on the left so they work while the right hand is on the mouse
 
 ## Nav (hold Esc)
 
-Right hand, one direction per column. Home keys `N E I O` are the arrows.
+Right hand, one direction per column. Home keys `N E I O` are the arrows. Index = ↑ and middle = ↓, the same fingers as the base-layer arrow keys.
 
 | | `N` col | `E` col | `I` col | `O` col |
 |---|---|---|---|---|
-| row above | word left (Opt+←) | doc end (Cmd+↓) | doc top (Cmd+↑) | word right (Opt+→) |
-| home | ← | ↓ | ↑ | → |
-| row below | line start (Cmd+←) | PgDn | PgUp | line end (Cmd+→) |
+| row above | doc top (Cmd+↑) | doc end (Cmd+↓) | word left (Opt+←) | word right (Opt+→) |
+| home | ↑ | ↓ | ← | → |
+| row below | PgUp | PgDn | line start (Cmd+←) | line end (Cmd+→) |
 
 Inner column `M`: previous tab, next tab, next window of the app (Cmd+`), top to bottom.
 Outer column: `\` = back (Cmd+[), `'` = forward (Cmd+]).

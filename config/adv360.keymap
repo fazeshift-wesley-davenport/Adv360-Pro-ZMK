@@ -162,9 +162,9 @@
       display-name = "Nav";
       bindings = <
         ___ ___           ___        ___         ___        ___              ___                                                          ___ ___              ___          ___           ___          ___           ___
-        ___ &kp LG(GRAVE) ___        WIN_RESTORE ___        &kp LC(UP)       ___                                                          ___ &kp LC(LS(TAB))  &kp LA(LEFT) &kp LG(DOWN)  &kp LG(UP)   &kp LA(RIGHT) &kp LG(LBKT)
-        ___ ___           WIN_PREV_DISPLAY WIN_MAX    WIN_NEXT_DISPLAY ___    ___              ___ ___ ___ ___                             ___ &kp LC(TAB)      &kp LEFT     &kp DOWN      &kp UP       &kp RIGHT     &kp LG(RBKT)
-        ___ ___           ___        WIN_FULLSCREEN ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp LG(LEFT) &kp PG_DN     &kp PG_UP    &kp LG(RIGHT) ___
+        ___ &kp LG(GRAVE) ___        WIN_RESTORE ___        &kp LC(UP)       ___                                                          ___ &kp LC(LS(TAB))  &kp LG(UP)   &kp LG(DOWN)  &kp LA(LEFT) &kp LA(RIGHT) &kp LG(LBKT)
+        ___ ___           WIN_PREV_DISPLAY WIN_MAX    WIN_NEXT_DISPLAY ___    ___              ___ ___ ___ ___                             ___ &kp LC(TAB)      &kp UP       &kp DOWN      &kp LEFT     &kp RIGHT     &kp LG(RBKT)
+        ___ ___           ___        WIN_FULLSCREEN ___        ___                                   ___ ___                                     &kp LG(GRAVE)    &kp PG_UP    &kp PG_DN     &kp LG(LEFT) &kp LG(RIGHT) ___
         ___ ___           ___        ___         ___                              ___ ___ ___ ___ ___ ___                                                      ___          ___           ___          ___           ___
       >;
     };
