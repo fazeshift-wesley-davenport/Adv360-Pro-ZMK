@@ -50,6 +50,7 @@ Rules that keep typing clean ("timeless" home-row mods):
 - 280 ms tapping term, 175 ms quick-tap (tap then hold repeats the letter), 150 ms prior-idle guard.
 - Same-hand shortcuts still need the thumb modifiers: Cmd+C, Cmd+V, Cmd+Z, Cmd+A are all left-hand letters, so use a thumb Cmd or the copy/paste keys beside B and G.
 - The Qwerty overlay uses the same finger order on A S D F and J K L ;.
+- No dedicated Shift keys. The lower pinky keys (Qwerty caps Shift) are `=` on the left and `-` on the right, so `+` is O+`=` and `_` is A+`-`. The top corners still type `=` and `-` until they get a better job.
 
 ## Inner-column keys (the ones capped 1, 2, 3, 4)
 

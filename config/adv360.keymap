@@ -109,7 +109,7 @@
         &kp EQUAL &kp N1    &kp N2     &kp N3   &kp N4    &kp N5 &tog SYM                                                                                  &mo MOD &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
         &kp TAB   &kp Q     &kp W      &kp F    &kp P     &kp B  &kp LG(C)                                                                                      &kp LG(TAB) &kp J  &kp L  &kp U     &kp Y    &kp SEMI &kp BSLH
         &kp ESC   &hml LSHFT A &hml LCTRL R &hml LALT S &hml LGUI T &kp G  &kp LG(V)           &mtc LGUI LG(SPACE) &kp LALT      &kp RALT      &mtc RGUI LG(K)              &kp LA(BSPC) &kp M  &hmr RGUI N &hmr RALT E &hmr RCTRL I &hmr RSHFT O &kp SQT
-        &kp LSHFT &kp Z     &kp X      &kp C    &kp D     &kp V                          &kp LCTRL                &kp RCTRL                                         &kp K  &kp H  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &kp EQUAL &kp Z     &kp X      &kp C    &kp D     &kp V                          &kp LCTRL                &kp RCTRL                                         &kp K  &kp H  &kp COMMA &kp DOT  &kp FSLH &kp MINUS
         &mo FN    &kp GRAVE &caps_word &kp LEFT &kp RIGHT               &kp BSPC &lth APP DEL &lth NAV ESC &lth SYM TAB &kp ENTER &kp SPACE                                &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo FN
       >;
     };
