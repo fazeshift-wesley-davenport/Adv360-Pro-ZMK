@@ -8,7 +8,7 @@ Seven layers. The Kinesis LED shows the highest active layer. Mod and Fn keep th
 | 1 | Qwerty | Mod+Q toggles it on and off. Resets to Colemak-DH on power cycle | white |
 | 2 | Fn | hold either outer bottom pinky key (stock) | blue |
 | 3 | Mod | hold the top inner key on the right half (stock, untouched) | green |
-| 4 | Sym | hold the right lower thumb key (tap = Tab), or tap the stock Kp key (top row, innermost on the left half) to lock | red |
+| 4 | Sym | hold Enter (right big thumb key), or tap the stock Kp key (top row, innermost on the left half) to lock | red |
 | 5 | Nav | hold the left lower thumb key (tap = Esc) | purple |
 | 6 | App | hold Del (left big thumb key) | cyan |
 
@@ -28,7 +28,7 @@ Letters below refer to the Colemak-DH key, then the physical Qwerty cap in paren
  left                      right
    Cmd   Opt           Opt   Cmd
  Bksp Del  Ctrl       Ctrl  Enter Space
-           Esc/Nav    Tab/Sym
+           Esc/Nav    Tab        (hold Enter = Sym)
 ```
 
 Cmd sits on the outer top key of each side, the easier reach. Opt on the inner top key. Ctrl on the upper column key.
@@ -86,7 +86,7 @@ Left hand, window controls:
 
 Maximize sends Rectangle's Cmd+Opt+Return. Full Screen sends macOS's native Control+Command+F. Restore keeps Ctrl+Opt+Backspace; display moves keep the Cmd+Opt arrow shortcuts.
 
-## Sym (hold Tab)
+## Sym (hold Enter)
 
 Left hand, TypeScript:
 
@@ -116,18 +116,17 @@ Bound in Raycast (solid on the wallpaper):
 | Hyper+U | Cursor |
 | Hyper+T | Terminal |
 | Hyper+V | Clipboard History |
+| Hyper+F | Finder |
+| Hyper+P | TablePlus |
 
 Suggested, not bound yet (dashed on the wallpaper). Each follows the letter the key types:
 
 | Key | Target |
 |-----|--------|
-| Hyper+F | Finder |
 | Hyper+N | Notion |
-| Hyper+P | Postman |
 | Hyper+A | Claude |
 | Hyper+G | ChatGPT |
 | Hyper+B | Bitwarden |
-| Hyper+Q | TablePlus |
 | Hyper+M | Messages |
 | Hyper+E | Mail |
 | Hyper+K | Calendar |
@@ -139,7 +138,7 @@ Suggested, not bound yet (dashed on the wallpaper). Each follows the letter the 
 | Hyper+. | Raycast snippets |
 | Hyper+; | System Settings |
 
-Free: `W R I J Y` and the digits. The list lives in `tools/apps.json`; move a key to `bound` after you add the hotkey.
+Free: `Q W R I J Y` and the digits. The list lives in `tools/apps.json`; move a key to `bound` after you add the hotkey.
 
 ## Fn
 

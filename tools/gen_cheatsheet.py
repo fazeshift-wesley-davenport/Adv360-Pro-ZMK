@@ -13,7 +13,7 @@ label_map={
  '&kp ENTER':'Enter','&kp SPACE':'Space','&kp LALT':'Opt','&kp RALT':'Opt','&kp LGUI':'Cmd','&kp RGUI':'Cmd','&kp LCTRL':'Ctrl','&kp RCTRL':'Ctrl',
  '&mtc LGUI LG(SPACE)':('Cmd','tap ⌘Space','hold'),'&mtc RGUI LG(K)':('Cmd','tap ⌘K','hold'),
  '&mo FN':('Fn','hold','hold'),'&mo MOD':('Mod','hold','hold'),'&tog SYM':('Kp','Sym lock','hold'),'&tog QWERTY':('Qwerty','toggle','hold'),
- '&lth APP DEL':('Del','hold → App','hold'),'&lth NAV ESC':('Esc','hold → Nav','hold'),'&lth SYM TAB':('Tab','hold → Sym','hold'),
+ '&lth APP DEL':('Del','hold → App','hold'),'&lth NAV ESC':('Esc','hold → Nav','hold'),'&lth SYM ENTER':('Enter','hold → Sym','hold'),
  '&kp PG_UP':'PgUp','&kp PG_DN':'PgDn','&kp HOME':'Home','&kp END':'End','&kp LG(LEFT)':('⌘←','line start',''),'&kp LG(RIGHT)':('⌘→','line end',''),
  '&kp LA(LEFT)':('⌥←','word',''),'&kp LA(RIGHT)':('⌥→','word',''),'&kp LC(LS(TAB))':('⌃⇧Tab','prev tab',''),'&kp LC(TAB)':('⌃Tab','next tab',''),
  '&kp LG(LBKT)':('⌘[','back',''),'&kp LG(RBKT)':('⌘]','forward',''),
@@ -78,7 +78,7 @@ notes={
  'Qwerty':'Mod+Q toggles this over the base. LED white. It sits below every hold layer, so Mod, Nav, Sym, App and Fn still win while it is on. Resets to Colemak-DH on power cycle.',
  'Fn':'Hold either outer bottom pinky key. LED blue. F-keys on the top row, brightness on W/F, media on L/U/Y and N/E/I, Caps Lock on the old Caps key.',
  'Mod':'Hold the top inner key on the right half. LED green. Stock Kinesis layer: Bluetooth profiles on 1–5, Boot on the key below Kp (left half) or below Mod (right half), version on the V cap, Qwerty toggle on the Q cap.',
- 'Sym':'Hold Tab (right thumb column), or tap Kp to lock. LED red. Left hand: TypeScript operators and autopairs. Right hand: numpad, 0 on the up-arrow key.',
+ 'Sym':'Hold Enter (right big thumb key), or tap Kp to lock. LED red. Left hand: TypeScript operators and autopairs. Right hand: numpad, 0 on the up-arrow key.',
  'Nav':'Hold Esc (left thumb column). LED purple. Right hand: arrows on the N E I O home keys, one direction per column (word jump above, line jump or page below). Inner column: tabs and next window. Outer column: back and forward. Left hand: window placement, Rectangle Maximize, and native macOS Full Screen. Thumb mods stay live, so Shift+arrow selects.',
  'App':'Hold Del. LED cyan. Every key sends Hyper (Ctrl+Opt+Shift+Cmd) plus the Colemak letter under it. Solid label = hotkey bound in Raycast. Dashed = suggested app, not bound yet. Bind in Raycast: search the app, Cmd+K, Add Hotkey, then hold Del and press the key.',
 }
