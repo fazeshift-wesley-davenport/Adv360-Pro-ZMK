@@ -19,7 +19,7 @@ if let path = CommandLine.arguments.dropFirst().first {
         options: [.skipsHiddenFiles]
     )) ?? []
     let candidates = files.filter {
-        $0.lastPathComponent.hasPrefix("adv360-layout-wallpaper-") && $0.pathExtension.lowercased() == "png"
+        $0.lastPathComponent.hasPrefix("adv360-layout-wallpaper-") && ["png", "heic"].contains($0.pathExtension.lowercased())
     }
     guard let latest = candidates.max(by: { a, b in
         let aDate = (try? a.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate) ?? .distantPast

@@ -29,7 +29,7 @@ usage: tools/ops <command>
   build              Docker build, Legacy left + right -> firmware/<ts>-<sha>-left-legacy.uf2, -right.uf2
   fetch              download firmware-no-clique from the latest green CI run on the branch
   flash left|right   print the file and key combo, wait for the drive, verify which half mounted. Never copies.
-  wallpaper          regenerate cheat sheet + wallpaper HTML, render the PNG into ~/Pictures, open it
+  wallpaper          regenerate cheat sheet + light/dark wallpaper HTML, render a dynamic HEIC into ~/Pictures, open it
   wallpaper-install [file]  set the newest rendered wallpaper (or a given image) on every display
   trainer            copy the keymap into the trainer app, regenerate its data, build it
 USAGE
@@ -153,11 +153,19 @@ cmd_wallpaper() {
   [ -x "$CHROME" ] || die "Chrome not at $CHROME (edit tools/ops.conf)"
   python3 tools/gen_cheatsheet.py
   python3 tools/gen_wallpaper.py
-  local out="$WALLPAPER_DIR/adv360-layout-wallpaper-$(date +%Y%m%d-%H%M).png"
-  "$CHROME" --headless=new --disable-gpu --hide-scrollbars --window-size=6016,3384 --screenshot="$out" "file://$ROOT/tools/wallpaper.html" 2>/dev/null
-  sips -g pixelWidth -g pixelHeight "$out" | awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{exit !(w==6016 && h==3384)}' || die "$out is not 6016x3384"
+  python3 tools/gen_wallpaper.py dark
+  local tmp; tmp=$(mktemp -d)
+  local theme html
+  for theme in light dark; do
+    html=tools/wallpaper.html; [ "$theme" = dark ] && html=tools/wallpaper-dark.html
+    "$CHROME" --headless=new --disable-gpu --hide-scrollbars --window-size=6016,3384 --screenshot="$tmp/$theme.png" "file://$ROOT/$html" 2>/dev/null
+    sips -g pixelWidth -g pixelHeight "$tmp/$theme.png" | awk '/pixelWidth/{w=$2} /pixelHeight/{h=$2} END{exit !(w==6016 && h==3384)}' || die "$theme render is not 6016x3384"
+  done
+  local out="$WALLPAPER_DIR/adv360-layout-wallpaper-$(date +%Y%m%d-%H%M).heic"
+  swift tools/make_dynamic_heic.swift "$tmp/light.png" "$tmp/dark.png" "$out"
+  rm -rf "$tmp"
   open "$out"
-  echo "ops: rendered $out"
+  echo "ops: rendered $out (light + dark, follows the system appearance)"
   echo "Install it with: tools/ops wallpaper-install"
 }
 
